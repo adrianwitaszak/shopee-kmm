@@ -1,0 +1,60 @@
+query GetShops($page: Int!, $size: Int!) {
+  shops(page: $page, size: $size) {
+    results {
+      id
+      userId
+      name
+      description
+      imageUrl
+    }
+    info {
+      count
+      pages
+      next
+      prev
+    }
+  }
+}
+
+query GetShop($shopId: String!) {
+  shop(shopId:$shopId) {
+    id
+    userId
+    name
+    description
+    imageUrl
+    reviews {
+      id
+      shopId
+      userId
+      text
+      rating
+    }
+  }
+}
+
+query GetProfile {
+  getProfile {
+    user {
+      id
+      email
+    }
+    shops {
+      id
+      userId
+      name
+      description
+      imageUrl
+    }
+  }
+}
+
+query GetReview($reviewId:String!) {
+  getReview(reviewId:$reviewId) {
+    id
+    shopId
+    userId
+    rating
+    text
+  }
+}

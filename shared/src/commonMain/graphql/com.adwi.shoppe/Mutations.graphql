@@ -1,0 +1,67 @@
+mutation NewShop($input: ShopInput!) {
+  createShop(shopInput: $input) {
+    id
+    name
+    description
+    imageUrl
+    userId
+  }
+}
+
+mutation UpdateShop($shopId: String!, $input: ShopInput!) {
+  updateShop(shopId: $shopId, shopInput: $input) {
+    id
+    name
+    description
+    imageUrl
+    userId
+  }
+}
+
+mutation DeleteShop($shopId: String!) {
+  deleteShop(shopId: $shopId)
+}
+
+mutation NewReview($shopId:String!, $reviewInput: ReviewInput!) {
+  createReview(shopId:$shopId, reviewInput:$reviewInput) {
+    id
+    text
+    rating
+    shopId
+    userId
+  }
+}
+
+mutation UpdateReview($reviewId:String!, $reviewInput: ReviewInput!) {
+  updateReview(reviewId:$reviewId, reviewInput:$reviewInput) {
+    id
+    text
+    rating
+    shopId
+    userId
+  }
+}
+
+mutation DeleteReview($reviewId:String!) {
+  deleteReview(reviewId:$reviewId)
+}
+
+mutation SignIn($userInput:UserInput!) {
+  signIn(userInput:$userInput) {
+    token
+    user {
+      id
+      email
+    }
+  }
+}
+
+mutation SignUp($userInput:UserInput!) {
+  signUp(userInput:$userInput) {
+    token
+    user {
+      id
+      email
+    }
+  }
+}

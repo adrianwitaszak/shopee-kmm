@@ -1,0 +1,54 @@
+CREATE TABLE Shop (
+    id TEXT NOT NULL PRIMARY KEY,
+    userId TEXT NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    imageUrl TEXT NOT NULL
+);
+
+CREATE TABLE Review (
+    id TEXT NOT NULL PRIMARY KEY,
+    shopId TEXT NOT NULL,
+    userId TEXT NOT NULL,
+    text TEXT NOT NULL,
+    rating INTEGER NOT NULL
+);
+
+CREATE TABLE UserState (
+   userId TEXT NOT NULL,
+   token TEXT NOT NULL
+);
+
+insertShop:
+INSERT INTO Shop(id, userId, name, description, imageUrl)
+VALUES(?, ?, ?, ?, ?);
+
+updateShopById:
+UPDATE Shop
+SET name = ?, description = ?, imageUrl = ?
+WHERE id = ?;
+
+removeAllShops:
+DELETE FROM Shop;
+
+selectAllShops:
+SELECT * FROM Shop;
+
+selectShopById:
+SELECT * FROM Shop
+WHERE id = ?;
+
+removeShopById:
+DELETE FROM Shop
+WHERE id = ?;
+
+selectUserState:
+SELECT * FROM UserState
+LIMIT 1;
+
+insertUserState:
+INSERT INTO UserState(userId, token)
+VALUES(?, ?);
+
+removeUserState:
+DELETE FROM UserState;
