@@ -1,4 +1,4 @@
-package com.adwi.bettykmm
+package com.adwi.shoppe
 
 import platform.UIKit.UIDevice
 

@@ -1,4 +1,4 @@
-package com.adwi.bettykmm.android
+package com.adwi.shoppe.android
 
 import android.os.Bundle
 import android.widget.TextView

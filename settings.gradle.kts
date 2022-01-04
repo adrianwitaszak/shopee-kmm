@@ -6,11 +6,10 @@ pluginManagement {
     }
 }
 
-rootProject.name = "shopee-kmm"
+rootProject.name = "shoppe-kmm"
 
 include(
 //    ":iosApp",
-    ":backend",
     ":androidApp",
     ":shared"
 )

@@ -14,6 +14,14 @@ object Kotlin {
     const val coil = "io.coil-kt:coil:${Versions.Kotlin.coil}"
 }
 
+object Koin {
+    const val core = "io.insert-koin:koin-core:${Versions.Kotlin.koin}"
+    const val android = "io.insert-koin:koin-android:${Versions.Kotlin.koin}"
+    const val navigation = "io.insert-koin:koin-androidx-navigation:${Versions.Kotlin.koin}"
+    const val workManager = "io.insert-koin:koin-androidx-workmanager:${Versions.Kotlin.koin}"
+    const val compose = "io.insert-koin:koin-androidx-compose:${Versions.Kotlin.koin}"
+}
+
 object SqlDelight {
     const val runtime = "com.squareup.sqldelight:runtime:${Versions.Kotlin.sqlDelight}"
     const val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.Kotlin.sqlDelight}"

@@ -3,12 +3,18 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin(Plugins.KOTLIN_MULTIPLATFORM)
     id(Plugins.ANDROID_LIBRARY)
-//    id(Plugins.APOLLO).version("3.0.0")
+    id(Plugins.APOLLO).version("3.0.0")
     id(Plugins.SQL_DELIGHT)
 }
 
 // workaround for https://youtrack.jetbrains.com/issue/KT-43944
 android {
+    compileSdk = AndroidConfig.compileSdk
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = AndroidConfig.minSdk
+        targetSdk = AndroidConfig.targetSdk
+    }
     configurations {
         create("androidTestApi")
         create("androidTestDebugApi")
@@ -40,10 +46,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(Kotlin.coroutinesCore) {
-                    isForce = true
-                }
-
+                api(Kotlin.coroutinesCore) { isForce = true }
                 api(Apollo.runtime)
                 implementation(SqlDelight.runtime)
             }
@@ -76,15 +79,6 @@ kotlin {
     }
 }
 
-android {
-    compileSdk = AndroidConfig.compileSdk
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    defaultConfig {
-        minSdk = AndroidConfig.minSdk
-        targetSdk = AndroidConfig.targetSdk
-    }
-}
-
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
@@ -105,13 +99,13 @@ val packForXcode by tasks.creating(Sync::class) {
 }
 tasks.getByName("build").dependsOn(packForXcode)
 
-//apollo {
-//    packageName.set(AndroidConfig.applicationId)
-////    generateKotlinModels.set(true)
-//}
+apollo {
+    packageName.set(AndroidConfig.applicationId)
+    srcDir("shared/graphql")
+}
 
 sqldelight {
-    database("JustDesserts") {
+    database("shoppe_database") {
         packageName = "${AndroidConfig.applicationId}.shared.cache"
     }
 }

@@ -25,9 +25,9 @@ object Versions {
         const val workManager = "2.7.1"
 
         // Compose
-        const val compose = "1.1.0-beta03"
-        const val material3 = "1.0.0-alpha01"
-        const val navigation = "2.4.0-beta02"
+        const val compose = "1.1.0-rc01"
+        const val material3 = "1.0.0-alpha02"
+        const val navigation = "2.4.0-rc01"
         const val activityCompose = "1.3.1"
         const val pagingCompose = "1.0.0-alpha14"
 
