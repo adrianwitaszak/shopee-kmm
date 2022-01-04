@@ -65,7 +65,7 @@ object Android {
         "androidx.compose.animation:animation:${Versions.Android.compose}"
     const val composeAnimationCore =
         "androidx.compose.animation:animation-core:${Versions.Android.compose}"
-    const val composeRuntime = "androidx.compose.runtime:runtime:${Versions.Android.compose}"
+    const val composeRuntime = "androidx.compose.runtime:runtime:${Versions.Android.composeRuntime}"
     const val composeMaterial3 =
         "androidx.compose.material3:material3:${Versions.Android.material3}"
     const val composeNavigation =

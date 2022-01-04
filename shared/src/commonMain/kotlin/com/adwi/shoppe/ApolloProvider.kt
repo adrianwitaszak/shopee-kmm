@@ -6,8 +6,6 @@ import com.apollographql.apollo3.api.http.HttpHeader
 
 class ApolloProvider {
 
-    val header = HttpHeader("Accept", "application/json")
-    val header2 = HttpHeader("Content-Type", "application/json")
     internal val apolloClient: ApolloClient = ApolloClient.Builder()
         .serverUrl(BASE_URL)
         .httpHeaders(

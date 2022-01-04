@@ -3,6 +3,7 @@ package com.adwi.shoppe.android
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.adwi.shoppe.Greeting
 
 fun greet(): String {
     return Greeting().greeting()
