@@ -58,6 +58,7 @@ kotlin {
             }
         }
         val androidMain by getting {
+            dependsOn(commonMain)
             dependencies {
                 implementation(Android.material)
                 implementation(SqlDelight.androidDriver)
@@ -71,6 +72,7 @@ kotlin {
             }
         }
         val iosMain by getting {
+            dependsOn(commonMain)
             dependencies {
                 implementation(SqlDelight.nativeDriver)
             }
@@ -104,7 +106,7 @@ apollo {
 }
 
 sqldelight {
-    database("shoppe_database") {
-        packageName = "${AndroidConfig.applicationId}.shared.cache"
+    database("Shoppe") {
+        packageName = AndroidConfig.applicationId
     }
 }
