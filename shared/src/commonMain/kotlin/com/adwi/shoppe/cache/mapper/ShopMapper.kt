@@ -1,4 +1,4 @@
-package com.adwi.shoppe.cache
+package com.adwi.shoppe.cache.mapper
 
 import com.adwi.shoppe.android.GetProfileQuery
 import com.adwi.shoppe.android.GetShopQuery
@@ -9,7 +9,7 @@ import comadwishoppe.Review
 import comadwishoppe.Shop
 
 data class Shops(val results: List<Shop>, val info: GetShopsQuery.Info?)
-data class ShopDetail(val dessert: Shop, val reviews: List<Review>)
+data class ShopDetail(val shop: Shop, val reviews: List<Review>)
 
 fun GetShopsQuery.Result.toShop() = Shop(
     id = id,
@@ -36,7 +36,7 @@ fun GetShopQuery.Shop.toShop() = Shop(
 
 fun GetShopQuery.Shop.toShopDetail() =
     ShopDetail(
-        dessert = this.toShop(),
+        shop = this.toShop(),
         reviews = emptyList() // reviews.map { it.toReview() }
     )
 

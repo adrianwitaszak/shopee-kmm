@@ -18,25 +18,25 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
         return dbQuery.selectAllShops().executeAsList()
     }
 
-    internal fun getShopById(dessertId: String): Shop? {
-        return dbQuery.selectShopById(dessertId).executeAsOneOrNull()
+    internal fun getShopById(shopId: String): Shop? {
+        return dbQuery.selectShopById(shopId).executeAsOneOrNull()
     }
 
-    internal fun saveShop(dessert: Shop) {
+    internal fun saveShop(shop: Shop) {
         dbQuery.transaction {
-            insertShop(dessert)
+            insertShop(shop)
         }
     }
 
-    internal fun updateShop(dessert: Shop) {
+    internal fun updateShop(shop: Shop) {
         dbQuery.transaction {
-            updateShopById(dessert)
+            updateShopById(shop)
         }
     }
 
-    internal fun deleteShop(dessertId: String) {
+    internal fun deleteShop(shopId: String) {
         dbQuery.transaction {
-            removeShop(dessertId)
+            removeShop(shopId)
         }
     }
 
@@ -56,26 +56,26 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
         }
     }
 
-    private fun removeShop(dessertId: String) {
-        dbQuery.removeShopById(dessertId)
+    private fun removeShop(shopId: String) {
+        dbQuery.removeShopById(shopId)
     }
 
-    private fun insertShop(dessert: Shop) {
+    private fun insertShop(shop: Shop) {
         dbQuery.insertShop(
-            dessert.id,
-            dessert.userId,
-            dessert.name,
-            dessert.description,
-            dessert.imageUrl
+            shop.id,
+            shop.userId,
+            shop.name,
+            shop.description,
+            shop.imageUrl
         )
     }
 
-    private fun updateShopById(dessert: Shop) {
+    private fun updateShopById(shop: Shop) {
         dbQuery.updateShopById(
-            name = dessert.name,
-            description = dessert.description,
-            imageUrl = dessert.imageUrl,
-            id = dessert.id
+            name = shop.name,
+            description = shop.description,
+            imageUrl = shop.imageUrl,
+            id = shop.id
         )
     }
 
