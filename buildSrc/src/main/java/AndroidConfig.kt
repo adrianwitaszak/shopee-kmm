@@ -1,6 +1,6 @@
 object AndroidConfig {
-    const val compileSdk = 31
-    const val applicationId = "com.adwi.bettykmm.android"
+    const val compileSdk = 32
+    const val applicationId = "com.adwi.shoppe.android"
     const val minSdk = 21
     const val targetSdk = compileSdk
     const val versionCode = 1
