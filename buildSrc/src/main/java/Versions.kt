@@ -1,17 +1,17 @@
 object Versions {
-    const val gradleBuildTool = "7.0.0"
+    const val gradleBuildTool = "7.0.2"
 
     object Kotlin {
         const val kotlinVersion = "1.6.0"
         const val coroutines = "1.5.2"
         const val serialization = "1.3.2"
-        const val koin = "3.1.4"
         const val coil = "1.4.0"
         const val sqlDelight = "1.5.3"
-    }
-
-    object Apollo {
-        const val runtime = "3.0.0"
+        const val apollo = "3.0.0"
+        const val kermit = "1.0.0"
+        const val kamel = "0.2.2"
+        const val pixel = "1.0.0-alpha"
+        const val kodein = "7.10.0"
     }
 
     object Android {
@@ -27,14 +27,15 @@ object Versions {
         // Compose
         const val compose = "1.1.0-rc01"
         const val composeRuntime = "1.1.0-rc01"
+        const val composeConstrainLayout = "1.0.0-beta02"
         const val material3 = "1.0.0-alpha02"
         const val navigation = "2.4.0-rc01"
         const val activityCompose = "1.3.1"
         const val pagingCompose = "1.0.0-alpha14"
 
         // Android
-        const val timber = "4.7.1"
         const val accompanist = "0.21.0-beta"
+        const val coil = "1.4.0"
 
         // Testing
         const val test_core = "1.4.0"

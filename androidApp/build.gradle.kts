@@ -11,6 +11,7 @@ android {
         targetSdk = AndroidConfig.targetSdk
         versionCode = AndroidConfig.versionCode
         versionName = AndroidConfig.versionName
+        testInstrumentationRunner = AndroidConfig.testInstrumentationRunner
     }
     buildFeatures {
         compose = true
@@ -31,22 +32,43 @@ android {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
         freeCompilerArgs = listOf(
             "-Xskip-prerelease-check",
-            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=com.apollographql.apollo3.annotations.ApolloExperimental",
         )
     }
 }
 
 dependencies {
     implementation(project(Modules.SHARED))
+
     with(Android) {
-        implementation(material)
+        implementation(coil)
+        implementation(paging)
+        implementation(coreKtx)
         implementation(appcompat)
-        implementation(composeCompiler)
+        implementation(lifecycle)
+        implementation(composeUi)
+        implementation(composePaging)
+        implementation(composeUiUtil)
+        implementation(composeTooling)
         implementation(composeRuntime)
+        implementation(composeActivity)
+        implementation(composeMaterial)
+        implementation(composeMaterial3)
+        implementation(composeAnimation)
+        implementation(composeNavigation)
+        implementation(composeUiGraphics)
+        implementation(accompanistInsets)
+        implementation(composeFoundation)
+        implementation(composeAnimationCore)
+        implementation(composeMaterialIcons)
+        implementation(composeConstrainLayout)
+        implementation(accompanistSwipeRefresh)
+        implementation(composeFoundationLayout)
     }
 }

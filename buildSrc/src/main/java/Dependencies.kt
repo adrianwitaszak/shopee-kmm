@@ -12,24 +12,18 @@ object Kotlin {
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Kotlin.coroutines}"
     const val coil = "io.coil-kt:coil:${Versions.Kotlin.coil}"
-}
-
-object Koin {
-    const val core = "io.insert-koin:koin-core:${Versions.Kotlin.koin}"
-    const val android = "io.insert-koin:koin-android:${Versions.Kotlin.koin}"
-    const val navigation = "io.insert-koin:koin-androidx-navigation:${Versions.Kotlin.koin}"
-    const val workManager = "io.insert-koin:koin-androidx-workmanager:${Versions.Kotlin.koin}"
-    const val compose = "io.insert-koin:koin-androidx-compose:${Versions.Kotlin.koin}"
+    const val kodein = "org.kodein.di:kodein-di:${Versions.Kotlin.kodein}" // DI
+    const val kodeinCompose = "org.kodein.di:kodein-di-framework-compose:${Versions.Kotlin.kodein}" // DI
+    const val kermit = "co.touchlab:kermit:${Versions.Kotlin.kermit}" // Logger - https://github.com/touchlab/Kermit
+    const val kamel = "com.alialbaali.kamel:kamel-image:${Versions.Kotlin.kamel}" // Image loading - https://github.com/alialbaali/Kamel
+    const val pixel = "io.github.mmobin789.pixel:pixel:${Versions.Kotlin.pixel}" // Image loading - https://github.com/mmobin789/pixel
+    const val apollo = "com.apollographql.apollo3:apollo-runtime:${Versions.Kotlin.apollo}"
 }
 
 object SqlDelight {
     const val runtime = "com.squareup.sqldelight:runtime:${Versions.Kotlin.sqlDelight}"
     const val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.Kotlin.sqlDelight}"
     const val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.Kotlin.sqlDelight}"
-}
-
-object Apollo {
-    const val runtime = "com.apollographql.apollo3:apollo-runtime:${Versions.Apollo.runtime}"
 }
 
 object Android {
@@ -44,12 +38,13 @@ object Android {
         "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Android.lifecycle}"
     const val lifecycleSavedState =
         "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.Android.lifecycle}"
-    const val lifecycleViewModel =
-        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.lifecycle}"
 
     // Compose
     const val composeCompiler = "androidx.compose.compiler:compiler:${Versions.Android.compose}"
+    const val composeRuntime = "androidx.compose.runtime:runtime:${Versions.Android.composeRuntime}"
+    const val composeConstrainLayout = "androidx.constraintlayout:constraintlayout-compose:${Versions.Android.composeConstrainLayout}"
     const val composeUi = "androidx.compose.ui:ui:${Versions.Android.compose}"
+    const val composeUiGraphics = "androidx.compose.ui:ui-graphics:${Versions.Android.compose}"
     const val composeMaterial = "androidx.compose.material:material:${Versions.Android.compose}"
     const val composeMaterialIcons =
         "androidx.compose.material:material-icons-extended:${Versions.Android.compose}"
@@ -65,7 +60,6 @@ object Android {
         "androidx.compose.animation:animation:${Versions.Android.compose}"
     const val composeAnimationCore =
         "androidx.compose.animation:animation-core:${Versions.Android.compose}"
-    const val composeRuntime = "androidx.compose.runtime:runtime:${Versions.Android.composeRuntime}"
     const val composeMaterial3 =
         "androidx.compose.material3:material3:${Versions.Android.material3}"
     const val composeNavigation =
@@ -74,12 +68,9 @@ object Android {
         "androidx.activity:activity-compose:${Versions.Android.activityCompose}"
     const val composePaging = "androidx.paging:paging-compose:${Versions.Android.pagingCompose}"
 
-    // Work
-    const val workManager = "androidx.work:work-runtime-ktx:${Versions.Android.workManager}"
-
     // Helpers
+    const val coil = "io.coil-kt:coil-compose:${Versions.Android.coil}"
     const val paging = "androidx.paging:paging-common-ktx:${Versions.Android.paging}"
-    const val timber = "com.jakewharton.timber:timber:${Versions.Android.timber}"
     const val accompanistInsets =
         "com.google.accompanist:accompanist-insets:${Versions.Android.accompanist}"
     const val accompanistPager =

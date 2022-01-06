@@ -19,8 +19,8 @@ class ReviewRepository(apolloProvider: ApolloProvider) : BaseRepository(apolloPr
         return response.data?.getReview?.toReview()
     }
 
-    suspend fun newReview(dessertId: String, reviewInput: ReviewInput): Review? {
-        val response = apolloClient.mutation(NewReviewMutation(dessertId, reviewInput)).execute()
+    suspend fun newReview(shopId: String, reviewInput: ReviewInput): Review? {
+        val response = apolloClient.mutation(NewReviewMutation(shopId, reviewInput)).execute()
         return response.data?.createReview?.toReview()
     }
 

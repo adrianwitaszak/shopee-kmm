@@ -46,9 +46,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(Kotlin.coroutinesCore) { isForce = true }
-                api(Apollo.runtime)
                 implementation(SqlDelight.runtime)
+                with(Kotlin) {
+                    api(coroutinesCore) { isForce = true }
+                    api(apollo)
+                }
             }
         }
         val commonTest by getting {
@@ -60,8 +62,8 @@ kotlin {
         val androidMain by getting {
             dependsOn(commonMain)
             dependencies {
-                implementation(Android.material)
                 implementation(SqlDelight.androidDriver)
+                api(Kotlin.kodeinCompose)
             }
         }
         val androidTest by getting {
