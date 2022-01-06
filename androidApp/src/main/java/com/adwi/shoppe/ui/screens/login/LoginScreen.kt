@@ -31,11 +31,11 @@ import androidx.constraintlayout.compose.MotionLayout
 import androidx.constraintlayout.compose.MotionScene
 import com.adwi.shoppe.ui.components.BackButton
 import com.adwi.shoppe.ui.components.ShoppeButton
-import com.adwi.shoppe.ui.components.ShoppeButtonText
 import com.adwi.shoppe.ui.components.ShoppeTextField
 import com.adwi.shoppe.ui.screens.login.components.BottomText
 import com.adwi.shoppe.ui.screens.login.components.ForgotHeader
 import com.adwi.shoppe.ui.screens.login.components.ForgotPassword
+import com.adwi.shoppe.ui.screens.login.components.ShoppeButtonText
 import com.adwi.shoppe.ui.screens.login.components.WelcomeHeader
 import com.adwi.shoppe.ui.theme.Pink40
 import org.kodein.di.compose.rememberInstance
@@ -217,7 +217,7 @@ fun LoginScreen() {
         )
         ShoppeButton(
             layoutId = "signIn",
-            label = { ShoppeButtonText(text = "Sign in", visibility = animateToEnd) },
+            label = { ShoppeButtonText(visibility = animateToEnd) },
             onClick = {
                 animateToEnd = !animateToEnd
             },
