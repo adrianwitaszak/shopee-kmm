@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -56,13 +57,14 @@ fun ShoppeTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    layoutId: String = "",
 ) {
     val transition = updateTransition(targetState = text.isEmpty(), label = "No text")
     val alpha by transition.animateFloat(label = "", transitionSpec = { tween(100) }
     ) { if (it) .5f else 0f }
 
     Surface(
-        modifier = modifier,
+        modifier = modifier.layoutId(layoutId),
         shape = shape,
         elevation = elevation,
         color = backgroundColor,

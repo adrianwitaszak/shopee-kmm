@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,6 +20,7 @@ import com.adwi.shoppe.ui.screens.login.LoginViewModel
 import com.adwi.shoppe.ui.theme.ShoppeTheme
 import org.kodein.di.compose.rememberInstance
 
+@ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @ExperimentalComposeUiApi
 @ExperimentalMaterial3Api

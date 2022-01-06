@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -34,6 +35,7 @@ import com.adwi.shoppe.ui.theme.paddingValues
 @Composable
 fun BackButton(
     modifier: Modifier = Modifier,
+    layoutId: String = "",
     icon: ImageVector = Icons.Outlined.ArrowBack,
     tint: Color = MaterialTheme.colorScheme.primary,
     onClick: () -> Unit,
@@ -60,6 +62,7 @@ fun BackButton(
         indication = null,
         color = Color.Transparent,
         modifier = Modifier
+            .layoutId(layoutId)
             .size(size)
             .padding(start = 4.dp, end = 4.dp)
     ) {

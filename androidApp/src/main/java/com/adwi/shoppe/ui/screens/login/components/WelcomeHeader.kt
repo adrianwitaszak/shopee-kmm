@@ -1,7 +1,6 @@
 package com.adwi.shoppe.ui.screens.login.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -10,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.adwi.shoppe.ui.theme.paddingValues
@@ -17,14 +17,15 @@ import com.adwi.shoppe.ui.theme.paddingValues
 @Composable
 fun WelcomeHeader(
     modifier: Modifier = Modifier,
-    text1: String,
-    text2: String,
-    text3: String,
+    layoutId: String = "",
+    text1: String = "Welcome to",
+    text2: String = "Shoppe",
+    text3: String = "for Sellers",
     contentColor: Color = MaterialTheme.colorScheme.onBackground,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.layoutId(layoutId)
     ) {
         Text(
             text = text1,

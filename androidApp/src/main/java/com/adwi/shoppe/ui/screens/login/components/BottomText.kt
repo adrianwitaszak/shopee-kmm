@@ -10,19 +10,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun BottomText(
     modifier: Modifier = Modifier,
+    layoutId: String = "",
     message: String = "Don't have an account?",
     onClick: () -> Unit,
     buttonText: String = "Sign up",
 ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier
+            modifier = modifier.layoutId(layoutId)
         ) {
             Text(
                 text = message,

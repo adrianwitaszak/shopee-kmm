@@ -1,5 +1,6 @@
 package com.adwi.shoppe.ui.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
@@ -8,7 +9,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.adwi.shoppe.cache.ActionType
-import com.adwi.shoppe.ui.screens.login.LoginScreen
 import com.adwi.shoppe.ui.screens.detail.ShopDetailView
 import com.adwi.shoppe.ui.screens.detail.ShopDetailViewModel
 import com.adwi.shoppe.ui.screens.favorites.FavoriteListView
@@ -17,10 +17,12 @@ import com.adwi.shoppe.ui.screens.form.ShopFormView
 import com.adwi.shoppe.ui.screens.form.ShopFormViewModel
 import com.adwi.shoppe.ui.screens.list.ShopListView
 import com.adwi.shoppe.ui.screens.list.ShopListViewModel
+import com.adwi.shoppe.ui.screens.login.LoginScreen
 import com.adwi.shoppe.ui.screens.review.ReviewFormView
 import com.adwi.shoppe.ui.screens.review.ReviewFormViewModel
 import org.kodein.di.compose.rememberInstance
 
+@ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @ExperimentalComposeUiApi
 @ExperimentalMaterial3Api
