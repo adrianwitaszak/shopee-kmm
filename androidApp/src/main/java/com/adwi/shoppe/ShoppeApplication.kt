@@ -5,12 +5,12 @@ import com.adwi.shoppe.cache.DatabaseDriverFactory
 import com.adwi.shoppe.repository.AuthRepository
 import com.adwi.shoppe.repository.ReviewRepository
 import com.adwi.shoppe.repository.ShopRepository
-import com.adwi.shoppe.ui.screens.login.LoginViewModel
-import com.adwi.shoppe.ui.screens.profile.ProfileViewModel
 import com.adwi.shoppe.ui.screens.detail.ShopDetailViewModel
 import com.adwi.shoppe.ui.screens.favorites.FavoriteListViewModel
 import com.adwi.shoppe.ui.screens.form.ShopFormViewModel
 import com.adwi.shoppe.ui.screens.list.ShopListViewModel
+import com.adwi.shoppe.ui.screens.login.LoginViewModel
+import com.adwi.shoppe.ui.screens.profile.ProfileViewModel
 import com.adwi.shoppe.ui.screens.review.ReviewFormViewModel
 import com.apollographql.apollo3.annotations.ApolloExperimental
 import org.kodein.di.DI
@@ -38,5 +38,10 @@ class ShoppeApplication : Application(), DIAware {
         bindProvider { ShopFormViewModel(instance()) }
         bindProvider { LoginViewModel(instance()) }
         bindProvider { ProfileViewModel(instance()) }
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        LinkServer().start()
     }
 }

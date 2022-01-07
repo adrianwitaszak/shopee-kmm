@@ -90,7 +90,9 @@ fun NavHost(
         }
 
         composable(Screens.LoginScreen.route) {
-            LoginScreen()
+            LoginScreen(
+                onSignInComplete = { navController.navigate(Screens.ShopsScreen.route) }
+            )
         }
     }
 }

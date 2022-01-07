@@ -9,7 +9,7 @@ pluginManagement {
 rootProject.name = "shoppe-kmm"
 
 include(
-//    ":iosApp",
     ":androidApp",
-    ":shared"
+    ":shared",
+    ":core"
 )

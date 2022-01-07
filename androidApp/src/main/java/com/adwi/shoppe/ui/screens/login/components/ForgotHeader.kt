@@ -10,10 +10,10 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ForgotHeader(
+fun Header(
     modifier: Modifier = Modifier,
     layoutId: String = "",
-    text: String = "Forgot \nPassword?",
+    text: String,
     fontSize: TextUnit = 50.sp,
 ) {
     Text(

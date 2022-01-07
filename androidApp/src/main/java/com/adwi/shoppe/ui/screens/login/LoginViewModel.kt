@@ -15,8 +15,6 @@ class LoginViewModel constructor(private val repository: AuthRepository) : ViewM
 
     val token = MutableStateFlow("")
 
-    val screenState = MutableStateFlow(LoginScreenState.LOGIN)
-
     init {
         getAuthToken()
         Log.d("MainViewModel", "INITIALIZED")
@@ -48,11 +46,4 @@ class LoginViewModel constructor(private val repository: AuthRepository) : ViewM
     fun deleteAuthToken() {
         repository.deleteUserState()
     }
-
-    fun setScreenState(state: LoginScreenState) {
-        screenState.value = state
-        Log.d("LoginViewModel", state.name)
-    }
 }
-
-enum class LoginScreenState { LOGIN, REGISTER, FORGOT}

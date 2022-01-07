@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -31,7 +32,7 @@ fun BottomText(
                 modifier = Modifier.alpha(.7f)
             )
             Spacer(modifier = Modifier.size(8.dp))
-            Surface(onClick = onClick) {
+            Surface(onClick = onClick, color = Color.Transparent) {
                 Text(
                     text = buttonText,
                     fontWeight = FontWeight.Bold,
