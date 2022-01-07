@@ -401,7 +401,13 @@ fun LoginScreen(
                 onPrevious = { focusManager.moveFocus(FocusDirection.Up) },
                 onSend = {
                     clearFocus(keyboardController, focusManager)
-                    Toast.makeText(context, "Signed in", Toast.LENGTH_SHORT).show()
+                    viewModel.signIn(email, password)
+                    if (token.isNotEmpty()) {
+                        onSignInComplete()
+                        currentScreen = LoginScreenState.COMPLETE
+                        animateToEnd = !animateToEnd
+                        Toast.makeText(context, "Signed in", Toast.LENGTH_SHORT).show()
+                    }
                 }
             ),
             modifier = Modifier.fillMaxWidth(.8f)
@@ -422,10 +428,10 @@ fun LoginScreen(
                 clearFocus(keyboardController, focusManager)
                 viewModel.signIn(email, password)
                 if (token.isNotEmpty()) {
-                    onSignInComplete()
                     currentScreen = LoginScreenState.COMPLETE
                     animateToEnd = !animateToEnd
                     Toast.makeText(context, "Signed in", Toast.LENGTH_SHORT).show()
+                    onSignInComplete()
                 }
             },
             buttonColor = progressPrimaryColor,

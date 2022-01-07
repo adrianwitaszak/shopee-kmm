@@ -1,4 +1,4 @@
-package com.adwi.shoppe.ui.screens.list
+package com.adwi.shoppe.ui.screens.shops
 
 import androidx.lifecycle.ViewModel
 import androidx.paging.Pager

@@ -1,4 +1,4 @@
-package com.adwi.shoppe.ui.screens.list
+package com.adwi.shoppe.ui.screens.shops
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

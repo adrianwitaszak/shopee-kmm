@@ -15,11 +15,11 @@ import com.adwi.shoppe.ui.screens.favorites.FavoriteListView
 import com.adwi.shoppe.ui.screens.favorites.FavoriteListViewModel
 import com.adwi.shoppe.ui.screens.form.ShopFormView
 import com.adwi.shoppe.ui.screens.form.ShopFormViewModel
-import com.adwi.shoppe.ui.screens.list.ShopListView
-import com.adwi.shoppe.ui.screens.list.ShopListViewModel
 import com.adwi.shoppe.ui.screens.login.LoginScreen
 import com.adwi.shoppe.ui.screens.review.ReviewFormView
 import com.adwi.shoppe.ui.screens.review.ReviewFormViewModel
+import com.adwi.shoppe.ui.screens.shops.ShopListViewModel
+import com.adwi.shoppe.ui.screens.shops.ShopsScreen
 import org.kodein.di.compose.rememberInstance
 
 @ExperimentalAnimationApi
@@ -34,7 +34,7 @@ fun NavHost(
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Screens.ShopsScreen.route) {
             val viewModel: ShopListViewModel by rememberInstance()
-            ShopListView(
+            ShopsScreen(
                 viewModel = viewModel,
             ) {
                 navController.navigate(Screens.ShopDetailsScreen.route + "/${it.id}")

@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
                             startDestination = Screens.ShopsScreen.route,
                         )
                     } else {
-                        LoginScreen { navController.navigate(Screens.LoginScreen.route) }
+                        LoginScreen { navController.navigate(Screens.ShopsScreen.route) }
                     }
                 }
             }

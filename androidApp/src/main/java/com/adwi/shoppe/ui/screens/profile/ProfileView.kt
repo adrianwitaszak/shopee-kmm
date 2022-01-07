@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.adwi.shoppe.ui.screens.list.ShopListRowView
+import com.adwi.shoppe.ui.screens.shops.ShopListRowView
 import comadwishoppe.Shop
 
 @Composable

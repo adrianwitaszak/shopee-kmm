@@ -8,10 +8,10 @@ import com.adwi.shoppe.repository.ShopRepository
 import com.adwi.shoppe.ui.screens.detail.ShopDetailViewModel
 import com.adwi.shoppe.ui.screens.favorites.FavoriteListViewModel
 import com.adwi.shoppe.ui.screens.form.ShopFormViewModel
-import com.adwi.shoppe.ui.screens.list.ShopListViewModel
 import com.adwi.shoppe.ui.screens.login.LoginViewModel
 import com.adwi.shoppe.ui.screens.profile.ProfileViewModel
 import com.adwi.shoppe.ui.screens.review.ReviewFormViewModel
+import com.adwi.shoppe.ui.screens.shops.ShopListViewModel
 import com.apollographql.apollo3.annotations.ApolloExperimental
 import org.kodein.di.DI
 import org.kodein.di.DIAware

@@ -20,6 +20,15 @@ class LoginViewModel constructor(private val repository: AuthRepository) : ViewM
         Log.d("MainViewModel", "INITIALIZED")
     }
 
+    private fun getAuthToken() {
+        viewModelScope.launch {
+            repository.getUserState().collect { state ->
+                token.value = state?.token ?: ""
+                Log.d("MainViewModel", token.value)
+            }
+        }
+    }
+
     fun signIn(email: String, password: String) {
         viewModelScope.launch {
             val result = repository.signIn(UserInput(email = email, password = password))
@@ -34,16 +43,7 @@ class LoginViewModel constructor(private val repository: AuthRepository) : ViewM
         }
     }
 
-    private fun getAuthToken() {
-        viewModelScope.launch {
-            repository.getUserState().collect { state ->
-                token.value = state?.token ?: ""
-                Log.d("MainViewModel", token.value)
-            }
-        }
-    }
-
-    fun deleteAuthToken() {
+    fun signOut() {
         repository.deleteUserState()
     }
 }
