@@ -1,4 +1,4 @@
-package com.adwi.shoppe
+package tools
 
 /*
  * Copyright 2021 The Android Open Source Project

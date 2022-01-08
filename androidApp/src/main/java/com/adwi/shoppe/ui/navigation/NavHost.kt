@@ -20,8 +20,10 @@ import com.adwi.shoppe.ui.screens.review.ReviewFormView
 import com.adwi.shoppe.ui.screens.review.ReviewFormViewModel
 import com.adwi.shoppe.ui.screens.shops.ShopListViewModel
 import com.adwi.shoppe.ui.screens.shops.ShopsScreen
+import com.apollographql.apollo3.annotations.ApolloExperimental
 import org.kodein.di.compose.rememberInstance
 
+@ApolloExperimental
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @ExperimentalComposeUiApi

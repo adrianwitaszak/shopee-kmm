@@ -13,13 +13,12 @@ import com.adwi.shoppe.ui.screens.profile.ProfileViewModel
 import com.adwi.shoppe.ui.screens.review.ReviewFormViewModel
 import com.adwi.shoppe.ui.screens.shops.ShopListViewModel
 import com.apollographql.apollo3.annotations.ApolloExperimental
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.bindProvider
-import org.kodein.di.bindSingleton
-import org.kodein.di.instance
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.kodein.di.*
+import tools.LinkServer
 
 @ApolloExperimental
+@ExperimentalCoroutinesApi
 class ShoppeApplication : Application(), DIAware {
 
     override val di: DI by DI.lazy {

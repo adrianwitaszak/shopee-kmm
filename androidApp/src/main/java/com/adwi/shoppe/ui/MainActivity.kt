@@ -18,8 +18,10 @@ import com.adwi.shoppe.ui.navigation.Screens
 import com.adwi.shoppe.ui.screens.login.LoginScreen
 import com.adwi.shoppe.ui.screens.login.LoginViewModel
 import com.adwi.shoppe.ui.theme.ShoppeTheme
+import com.apollographql.apollo3.annotations.ApolloExperimental
 import org.kodein.di.compose.rememberInstance
 
+@ApolloExperimental
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @ExperimentalComposeUiApi

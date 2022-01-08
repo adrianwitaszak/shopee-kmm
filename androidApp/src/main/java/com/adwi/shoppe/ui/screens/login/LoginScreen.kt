@@ -15,13 +15,8 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Password
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -38,16 +33,14 @@ import com.adwi.shoppe.com.adwi.shoppe.ui.screens.login.components.ProfileImage
 import com.adwi.shoppe.ui.components.BackButton
 import com.adwi.shoppe.ui.components.ShoppeButton
 import com.adwi.shoppe.ui.components.ShoppeTextField
-import com.adwi.shoppe.ui.screens.login.components.BottomText
-import com.adwi.shoppe.ui.screens.login.components.ForgotPassword
-import com.adwi.shoppe.ui.screens.login.components.Header
-import com.adwi.shoppe.ui.screens.login.components.ShoppeButtonText
-import com.adwi.shoppe.ui.screens.login.components.WelcomeHeader
+import com.adwi.shoppe.ui.screens.login.components.*
 import com.adwi.shoppe.ui.theme.Pink40
+import com.apollographql.apollo3.annotations.ApolloExperimental
 import org.kodein.di.compose.rememberInstance
 
 enum class LoginScreenState { LOGIN, REGISTER, FORGOT, COMPLETE }
 
+@ApolloExperimental
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi
 @ExperimentalComposeUiApi
