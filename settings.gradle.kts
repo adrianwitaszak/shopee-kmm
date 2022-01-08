@@ -11,5 +11,4 @@ rootProject.name = "shoppe-kmm"
 include(
     ":androidApp",
     ":shared",
-    ":core"
 )

@@ -45,7 +45,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 dependencies {
     implementation(project(Modules.SHARED))
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02")
     implementation("androidx.constraintlayout:constraintlayout-core:1.0.2")
 
     with(Android) {
@@ -69,8 +68,9 @@ dependencies {
         implementation(composeFoundation)
         implementation(composeAnimationCore)
         implementation(composeMaterialIcons)
-//        implementation(composeConstrainLayout)
+        implementation(composeConstrainLayout)
         implementation(accompanistSwipeRefresh)
         implementation(composeFoundationLayout)
+        implementation(accompanistNavigationAnimation)
     }
 }

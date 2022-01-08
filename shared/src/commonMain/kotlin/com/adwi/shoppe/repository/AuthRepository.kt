@@ -10,8 +10,6 @@ import com.apollographql.apollo3.annotations.ApolloExperimental
 import comadwishoppe.Shop
 import comadwishoppe.UserState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 
 @Suppress("TooGenericExceptionThrown")
 @ExperimentalCoroutinesApi
@@ -45,7 +43,7 @@ class AuthRepository(apolloProvider: ApolloProvider) : BaseRepository(apolloProv
         return response.data?.getProfile?.shops?.map { it.toShop() } ?: emptyList()
     }
 
-    fun getUserState(): Flow<UserState?> = flowOf(database.getUserState())
+    fun getUserState(): UserState? = database.getUserState()
 
     fun deleteUserState() {
         return database.deleteUserState()

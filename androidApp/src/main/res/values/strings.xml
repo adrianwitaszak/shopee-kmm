@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    // Screens
+    <string name="dashboard">dashboard</string>
+    <string name="manager">Manager</string>
+    <string name="planner">Planner</string>
+    <string name="settings">Settings</string>
+
     <string name="back">Back</string>
 </resources>

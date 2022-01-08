@@ -1,5 +1,6 @@
 package com.adwi.shoppe.ui.screens.login
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColorAsState
@@ -26,6 +27,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
@@ -36,7 +38,6 @@ import com.adwi.shoppe.ui.components.ShoppeTextField
 import com.adwi.shoppe.ui.screens.login.components.*
 import com.adwi.shoppe.ui.theme.Pink40
 import com.apollographql.apollo3.annotations.ApolloExperimental
-import org.kodein.di.compose.rememberInstance
 
 enum class LoginScreenState { LOGIN, REGISTER, FORGOT, COMPLETE }
 
@@ -46,22 +47,29 @@ enum class LoginScreenState { LOGIN, REGISTER, FORGOT, COMPLETE }
 @ExperimentalComposeUiApi
 @Composable
 fun LoginScreen(
+    viewModel: LoginViewModel,
     onSignInComplete: () -> Unit,
 ) {
-    val viewModel: LoginViewModel by rememberInstance()
+    Log.d("LoginScreen", "im here")
     val token by viewModel.token.collectAsState()
-
-    var currentScreen by rememberSaveable { mutableStateOf(LoginScreenState.LOGIN) }
 
     var email by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
+    var currentScreen by rememberSaveable { mutableStateOf(LoginScreenState.LOGIN) }
+    var animateToEnd by remember { mutableStateOf(false) }
+
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
     val context = LocalContext.current
 
-    var animateToEnd by remember { mutableStateOf(false) }
+    if (token.isNotEmpty()) {
+        onSignInComplete()
+        currentScreen = LoginScreenState.COMPLETE
+        animateToEnd = !animateToEnd
+        Toast.makeText(context, "Signed in", Toast.LENGTH_SHORT).show()
+    }
 
     val progressPrimaryColor by animateColorAsState(
         targetValue = if (animateToEnd) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.primary,
@@ -181,7 +189,7 @@ fun LoginScreen(
             alpha: 1
         },
         signIn: {
-            top: ['password', 'bottom', 16],
+            top: ['password', 'bottom', 32],
             end: ['email', 'end', 0],
             alpha: 1
         },
@@ -206,7 +214,7 @@ fun LoginScreen(
         },
         register: {
             start:  ['parent', 'end', 0],
-            centerHorizontally: 'back',
+            centerVertically: 'back',
             alpha: 1
         },
         ForgotHeader: {
@@ -241,7 +249,7 @@ fun LoginScreen(
             alpha: 1
         },
         signIn: {
-            top: ['email', 'bottom', 12],
+            top: ['email', 'bottom', 32],
             end: ['email', 'end', 0],
             alpha: 1
         },
@@ -370,8 +378,11 @@ fun LoginScreen(
             label = "Email",
             leadingIcon = Icons.Filled.Email,
             backgroundColor = progressSecondaryColor,
-            keyboardOptions = KeyboardOptions(imeAction = if (currentScreen == LoginScreenState.FORGOT)
-                ImeAction.Send else ImeAction.Next),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = if (currentScreen == LoginScreenState.FORGOT)
+                    ImeAction.Send else ImeAction.Next
+            ),
             keyboardActions = KeyboardActions(
                 onNext = { defaultKeyboardAction(ImeAction.Next) },
                 onSend = {
@@ -389,18 +400,15 @@ fun LoginScreen(
             leadingIcon = Icons.Filled.Password,
             backgroundColor = progressSecondaryColor,
             visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(imeAction = if (email.isEmpty()) ImeAction.Previous else ImeAction.Send),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password,
+                imeAction = if (email.isEmpty()) ImeAction.Previous else ImeAction.Send
+            ),
             keyboardActions = KeyboardActions(
                 onPrevious = { focusManager.moveFocus(FocusDirection.Up) },
                 onSend = {
                     clearFocus(keyboardController, focusManager)
                     viewModel.signIn(email, password)
-                    if (token.isNotEmpty()) {
-                        onSignInComplete()
-                        currentScreen = LoginScreenState.COMPLETE
-                        animateToEnd = !animateToEnd
-                        Toast.makeText(context, "Signed in", Toast.LENGTH_SHORT).show()
-                    }
                 }
             ),
             modifier = Modifier.fillMaxWidth(.8f)
@@ -420,12 +428,6 @@ fun LoginScreen(
             onClick = {
                 clearFocus(keyboardController, focusManager)
                 viewModel.signIn(email, password)
-                if (token.isNotEmpty()) {
-                    currentScreen = LoginScreenState.COMPLETE
-                    animateToEnd = !animateToEnd
-                    Toast.makeText(context, "Signed in", Toast.LENGTH_SHORT).show()
-                    onSignInComplete()
-                }
             },
             buttonColor = progressPrimaryColor,
             modifier = Modifier.fillMaxWidth(.4f),

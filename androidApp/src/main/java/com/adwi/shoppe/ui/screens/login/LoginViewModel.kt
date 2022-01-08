@@ -1,32 +1,25 @@
 package com.adwi.shoppe.ui.screens.login
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adwi.shoppe.android.type.UserInput
 import com.adwi.shoppe.repository.AuthRepository
+import com.adwi.shoppe.ui.base.BaseViewModel
 import com.apollographql.apollo3.annotations.ApolloExperimental
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @ApolloExperimental
-class LoginViewModel constructor(private val repository: AuthRepository) : ViewModel() {
+class LoginViewModel constructor(private val repository: AuthRepository) : BaseViewModel() {
 
     val token = MutableStateFlow("")
 
     init {
-        getAuthToken()
         Log.d("MainViewModel", "INITIALIZED")
     }
 
-    private fun getAuthToken() {
-        viewModelScope.launch {
-            repository.getUserState().collect { state ->
-                token.value = state?.token ?: ""
-                Log.d("MainViewModel", token.value)
-            }
-        }
+    fun getAuthToken(): String {
+        return repository.getUserState()?.token ?: ""
     }
 
     fun signIn(email: String, password: String) {
