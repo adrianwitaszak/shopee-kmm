@@ -1,11 +1,9 @@
 package com.adwi.shoppe.ui.screens.login
 
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
@@ -35,10 +33,11 @@ import com.adwi.shoppe.com.adwi.shoppe.ui.screens.login.components.ProfileImage
 import com.adwi.shoppe.ui.components.*
 import com.adwi.shoppe.ui.screens.login.components.*
 import com.adwi.shoppe.ui.theme.Pink40
+import com.adwi.shoppe.util.ProgressBarState
 import com.apollographql.apollo3.annotations.ApolloExperimental
 import com.google.accompanist.insets.statusBarsPadding
+import kotlinx.coroutines.delay
 
-enum class LoginScreenState { LOGIN, REGISTER, FORGOT, COMPLETE }
 
 @ApolloExperimental
 @ExperimentalAnimationApi
@@ -49,15 +48,15 @@ fun LoginScreen(
     viewModel: LoginViewModel,
     onSignInComplete: () -> Unit,
 ) {
-    Log.d("LoginScreen", "im here")
-    val token by viewModel.token.collectAsState()
+    val state by viewModel.state.collectAsState()
+    val event = viewModel::onTriggerEvent
 
     var email by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    var currentScreen by rememberSaveable { mutableStateOf(LoginScreenState.LOGIN) }
-    var backgroundState by remember { mutableStateOf(AnimatedShadeBackgroundState.FIRST) }
+    var currentScreen by rememberSaveable { mutableStateOf(LoginScreenUiState.LOGIN) }
+    var backgroundState by rememberSaveable { mutableStateOf(AnimatedShadeBackgroundState.FIRST) }
 
     var animateToEnd by remember { mutableStateOf(false) }
 
@@ -65,11 +64,17 @@ fun LoginScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     val context = LocalContext.current
 
-    if (token.isNotEmpty()) {
-        onSignInComplete()
-        currentScreen = LoginScreenState.COMPLETE
+    if (state.token.isNotEmpty()) {
+        currentScreen = LoginScreenUiState.COMPLETE
         animateToEnd = !animateToEnd
-        Toast.makeText(context, "Signed in", Toast.LENGTH_SHORT).show()
+        LaunchedEffect(currentScreen == LoginScreenUiState.COMPLETE) {
+            delay(1000)
+            onSignInComplete()
+            viewModel.setSnackBar("Signed in")
+        }
+    }
+    if (state.progressBarState == ProgressBarState.Loading) {
+        currentScreen = LoginScreenUiState.LOADING
     }
 
     val progressPrimaryColor by animateColorAsState(
@@ -336,137 +341,201 @@ fun LoginScreen(
         }  
     }"""
     )
+    val loadingConstraintSet = ConstraintSet(
+        """{
+        back: {
+            top: ['parent', 'top', 20],
+            start: ['parent', 'start', 24],
+            alpha: 1
+        },
+        register: {
+            start:  ['parent', 'end', 0],
+            centerVertically: 'back',
+            alpha: 1
+        },
+        ForgotHeader: {
+            bottom: ['email', 'top', 64],
+            start: ['email', 'start', 0],
+            alpha: 1
+        },
+        WelcomeHeader: {
+            top: ['parent', 'top', -100],
+            centerHorizontally: 'parent',
+            alpha: 0
+        },
+        image: {
+            bottom: ['parent', 'top', 0],
+            centerHorizontally: 'parent',
+            alpha: 0
+        },
+        name: {
+            centerHorizontally: 'email',
+            centerVertically: 'email',
+            alpha: 0
+        },                                            // Forgot
+        email: {
+            top: ['parent', 'top', 50],
+            bottom: ['parent', 'bottom', 0],
+            centerHorizontally: 'parent',
+            alpha: 1
+        },
+        password: {
+            top: ['email', 'bottom', 16],
+            end: ['parent', 'start', 0],
+            alpha: 1
+        },
+        signIn: {
+            top: ['email', 'bottom', 32],
+            end: ['email', 'end', 0],
+            alpha: 1
+        },
+        forgot: {
+            top: ['signIn', 'top', 0],
+            bottom: ['signIn', 'bottom', 0],
+            start: ['signIn', 'start', 0],
+            alpha: 0
+        },
+        BottomText: {
+            top: ['parent', 'bottom', 0],
+            centerHorizontally: 'parent',
+            alpha: 0
+        }
+      }"""
+    )
 
     val constrains = when (currentScreen) {
-        LoginScreenState.LOGIN -> loginConstraintSet
-        LoginScreenState.REGISTER -> registerConstraintSet
-        LoginScreenState.FORGOT -> forgotConstraintSet
-        LoginScreenState.COMPLETE -> completeConstraintSet
+        LoginScreenUiState.LOGIN -> loginConstraintSet
+        LoginScreenUiState.REGISTER -> registerConstraintSet
+        LoginScreenUiState.FORGOT -> forgotConstraintSet
+        LoginScreenUiState.COMPLETE -> completeConstraintSet
+        LoginScreenUiState.LOADING -> loadingConstraintSet
     }
-    ConstraintLayout(
-        constraintSet = constrains,
-        animateChanges = true,
-        animationSpec = tween(1000),
-        modifier = Modifier
-            .fillMaxSize()
-            .background(progressBackgroundColor)
-            .statusBarsPadding(),
-    ) {
-        AnimatedShadeBackground(state = backgroundState) {}
-        BackButton(
-            layoutId = "back",
-            onClick = {
-                currentScreen = LoginScreenState.LOGIN
-                animateToEnd = !animateToEnd
-                backgroundState = backgroundState.toggleState()
-                clearFocus(keyboardController, focusManager)
-            },
-        )
-        Header(
-            layoutId = "register",
-            text = "Register"
-        )
-        Header(
-            layoutId = "ForgotHeader",
-            text = "Forgot \nPassword?"
-        )
-        WelcomeHeader(layoutId = "WelcomeHeader")
-        ProfileImage(layoutId = "image")
-        ShoppeTextField(
-            layoutId = "name",
-            text = name,
-            onTextChange = { name = it },
-            label = "Name",
-            leadingIcon = Icons.Filled.Person,
-            backgroundColor = progressSecondaryColor,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-            keyboardActions = KeyboardActions { defaultKeyboardAction(ImeAction.Next) },
-            modifier = Modifier.fillMaxWidth(.8f)
-        )
-        ShoppeTextField(
-            layoutId = "email",
-            text = email,
-            onTextChange = { email = it },
-            label = "Email",
-            leadingIcon = Icons.Filled.Email,
-            backgroundColor = progressSecondaryColor,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Email,
-                imeAction = if (currentScreen == LoginScreenState.FORGOT)
-                    ImeAction.Send else ImeAction.Next
-            ),
-            keyboardActions = KeyboardActions(
-                onNext = { defaultKeyboardAction(ImeAction.Next) },
-                onSend = {
-                    clearFocus(keyboardController, focusManager)
-                    viewModel.setSnackBar("Signed in")
-                }
-            ),
-            modifier = Modifier.fillMaxWidth(.8f)
-        )
-        ShoppeTextField(
-            layoutId = "password",
-            text = password,
-            onTextChange = { password = it },
-            label = "Password",
-            leadingIcon = Icons.Filled.Password,
-            backgroundColor = progressSecondaryColor,
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password,
-                imeAction = if (email.isEmpty()) ImeAction.Previous else ImeAction.Send
-            ),
-            keyboardActions = KeyboardActions(
-                onPrevious = { focusManager.moveFocus(FocusDirection.Up) },
-                onSend = {
-                    clearFocus(keyboardController, focusManager)
-                    viewModel.signIn(email, password)
-                    viewModel.setSnackBar("Signed in")
-                }
-            ),
-            modifier = Modifier.fillMaxWidth(.8f)
-        )
 
-        ForgotPassword(
-            layoutId = "forgot",
-            onClick = {
-                currentScreen = LoginScreenState.FORGOT
-                animateToEnd = !animateToEnd
-                backgroundState = backgroundState.toggleState()
-                clearFocus(keyboardController, focusManager)
-            }
-        )
-        ShoppeButton(
-            layoutId = "signIn",
-            label = { ShoppeButtonText(state = currentScreen) },
-            onClick = {
-                clearFocus(keyboardController, focusManager)
-                backgroundState = backgroundState.toggleState()
-                when (currentScreen) {
-                    LoginScreenState.LOGIN -> {
-                        viewModel.signIn(email, password)
+    ShoppeScaffold(viewModel = viewModel) {
+        ConstraintLayout(
+            constraintSet = constrains,
+            animateChanges = true,
+            animationSpec = tween(1000),
+            modifier = Modifier
+                .fillMaxSize()
+                .statusBarsPadding(),
+        ) {
+            AnimatedShadeBackground(
+                state = backgroundState,
+                background = progressBackgroundColor,
+            )
+            BackButton(
+                layoutId = "back",
+                onClick = {
+                    currentScreen = LoginScreenUiState.LOGIN
+                    animateToEnd = !animateToEnd
+                    backgroundState = backgroundState.toggleState()
+                    clearFocus(keyboardController, focusManager)
+                },
+            )
+            Header(
+                layoutId = "register",
+                text = "Register"
+            )
+            Header(
+                layoutId = "ForgotHeader",
+                text = "Forgot \nPassword?"
+            )
+            WelcomeHeader(layoutId = "WelcomeHeader")
+            ProfileImage(layoutId = "image")
+            ShoppeTextField(
+                layoutId = "name",
+                text = name,
+                onTextChange = { name = it },
+                label = "Name",
+                leadingIcon = Icons.Filled.Person,
+                backgroundColor = progressSecondaryColor,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                keyboardActions = KeyboardActions { defaultKeyboardAction(ImeAction.Next) },
+                modifier = Modifier.fillMaxWidth(.8f)
+            )
+            ShoppeTextField(
+                layoutId = "email",
+                text = email,
+                onTextChange = { email = it },
+                label = "Email",
+                leadingIcon = Icons.Filled.Email,
+                backgroundColor = progressSecondaryColor,
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email,
+                    imeAction = if (currentScreen == LoginScreenUiState.FORGOT)
+                        ImeAction.Send else ImeAction.Next
+                ),
+                keyboardActions = KeyboardActions(
+                    onNext = { defaultKeyboardAction(ImeAction.Next) },
+                    onSend = { clearFocus(keyboardController, focusManager) }
+                ),
+                modifier = Modifier.fillMaxWidth(.8f)
+            )
+            ShoppeTextField(
+                layoutId = "password",
+                text = password,
+                onTextChange = { password = it },
+                label = "Password",
+                leadingIcon = Icons.Filled.Password,
+                backgroundColor = progressSecondaryColor,
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = if (email.isEmpty()) ImeAction.Previous else ImeAction.Send
+                ),
+                keyboardActions = KeyboardActions(
+                    onPrevious = { focusManager.moveFocus(FocusDirection.Up) },
+                    onSend = {
+                        clearFocus(keyboardController, focusManager)
+                        event(LoginScreenEvents.SignIn(email, password))
                     }
-                    LoginScreenState.REGISTER -> {
-                        viewModel.signUp(email, password)
-                    }
-                    LoginScreenState.FORGOT -> {
-                        Toast.makeText(context, "Comming soon", Toast.LENGTH_SHORT).show()
-                    }
-                    LoginScreenState.COMPLETE -> {}
+                ),
+                modifier = Modifier.fillMaxWidth(.8f)
+            )
+
+            ForgotPassword(
+                layoutId = "forgot",
+                onClick = {
+                    currentScreen = LoginScreenUiState.FORGOT
+                    animateToEnd = !animateToEnd
+                    backgroundState = backgroundState.toggleState()
+                    clearFocus(keyboardController, focusManager)
                 }
-            },
-            buttonColor = progressPrimaryColor,
-            modifier = Modifier.fillMaxWidth(.4f),
-        )
-        BottomText(
-            layoutId = "BottomText",
-            onClick = {
-                currentScreen = LoginScreenState.REGISTER
-                animateToEnd = !animateToEnd
-                backgroundState = backgroundState.toggleState()
-                clearFocus(keyboardController, focusManager)
-            },
-        )
+            )
+            ShoppeButton(
+                layoutId = "signIn",
+                label = { ShoppeButtonText(state = currentScreen) },
+                onClick = {
+                    clearFocus(keyboardController, focusManager)
+                    backgroundState = backgroundState.toggleState()
+                    when (currentScreen) {
+                        LoginScreenUiState.LOGIN -> {
+                            event(LoginScreenEvents.SignIn(email, password))
+                        }
+                        LoginScreenUiState.REGISTER -> {
+                            event(LoginScreenEvents.SignUp(name, email, password))
+                        }
+                        LoginScreenUiState.FORGOT -> {
+                            Toast.makeText(context, "Comming soon", Toast.LENGTH_SHORT).show()
+                        }
+                        LoginScreenUiState.COMPLETE -> {}
+                        LoginScreenUiState.LOADING -> {}
+                    }
+                },
+                buttonColor = progressPrimaryColor,
+                modifier = Modifier.fillMaxWidth(.4f),
+            )
+            BottomText(
+                layoutId = "BottomText",
+                onClick = {
+                    currentScreen = LoginScreenUiState.REGISTER
+                    animateToEnd = !animateToEnd
+                    backgroundState = backgroundState.toggleState()
+                    clearFocus(keyboardController, focusManager)
+                },
+            )
+        }
     }
 }
 

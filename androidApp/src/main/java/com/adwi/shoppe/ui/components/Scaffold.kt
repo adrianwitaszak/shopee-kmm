@@ -1,6 +1,5 @@
 package com.adwi.shoppe.ui.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.*
@@ -14,7 +13,6 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import com.adwi.shoppe.ui.base.BaseViewModel
 import com.adwi.shoppe.ui.theme.Neutral3
-import com.adwi.shoppe.util.Event
 
 @Composable
 fun ShoppeScaffold(
@@ -42,8 +40,7 @@ fun ShoppeScaffold(
     if (snackbarMessage.isNotEmpty()) {
         LaunchedEffect(scaffoldState.snackbarHostState) {
             scaffoldState.snackbarHostState.showSnackbar(snackbarMessage)
-            viewModel.setEvent(Event.ShowSnackBar(""))
-            Log.d("snackbar", "ShoppeScaffold - $snackbarMessage")
+            viewModel.setSnackBar("")
         }
     }
 

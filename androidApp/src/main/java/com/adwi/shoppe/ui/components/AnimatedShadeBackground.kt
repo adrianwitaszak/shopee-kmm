@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
@@ -18,7 +19,7 @@ fun AnimatedShadeBackground(
     state: AnimatedShadeBackgroundState = AnimatedShadeBackgroundState.FIRST,
     duration: Int = 1000,
     debug: Boolean = false,
-    content: @Composable () -> Unit,
+    background: Color = MaterialTheme.colorScheme.background,
 ) {
     val firstConstraintSet = """{
             shadeViolet: {
@@ -89,7 +90,7 @@ fun AnimatedShadeBackground(
             animationSpec = tween(duration),
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background)
+                .background(background)
         ) {
             ShoppeShade(
                 layoutId = "shadeViolet",
@@ -112,7 +113,6 @@ fun AnimatedShadeBackground(
                 text = if (debug) "blue" else "",
             )
         }
-        content()
     }
 }
 
@@ -132,7 +132,7 @@ private fun AnimatedShadeBackgroundPreviewLight() {
                 .padding(paddingValues),
             verticalArrangement = Arrangement.spacedBy(paddingValues)
         ) {
-            AnimatedShadeBackground {}
+            AnimatedShadeBackground(state = AnimatedShadeBackgroundState.FIRST)
         }
     }
 }
@@ -147,7 +147,7 @@ private fun AnimatedShadeBackgroundPreviewDark() {
                 .padding(paddingValues),
             verticalArrangement = Arrangement.spacedBy(paddingValues)
         ) {
-            AnimatedShadeBackground {}
+            AnimatedShadeBackground(state = AnimatedShadeBackgroundState.FIRST)
         }
     }
 }

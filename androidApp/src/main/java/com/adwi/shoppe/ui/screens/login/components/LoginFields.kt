@@ -1,18 +1,10 @@
 package com.adwi.shoppe.ui.screens.login.components
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
@@ -30,7 +22,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.adwi.shoppe.ui.components.ShoppeTextField
-import com.adwi.shoppe.ui.screens.login.LoginScreenState
+import com.adwi.shoppe.ui.screens.login.LoginScreenUiState
 import com.adwi.shoppe.ui.theme.ShoppeTheme
 import com.adwi.shoppe.ui.theme.paddingValues
 
@@ -39,12 +31,12 @@ import com.adwi.shoppe.ui.theme.paddingValues
 @Composable
 fun LoginFields(
     modifier: Modifier = Modifier,
+    state: LoginScreenUiState = LoginScreenUiState.LOGIN,
     email: String,
     onEmailChanged: (String) -> Unit,
     password: String,
     onPasswordChanged: (String) -> Unit,
     onActionDone: () -> Unit,
-    state: LoginScreenState = LoginScreenState.LOGIN
 ) {
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -64,7 +56,7 @@ fun LoginFields(
         )
         Spacer(modifier = Modifier.size(paddingValues / 2))
         AnimatedVisibility(
-            visible = state != LoginScreenState.FORGOT,
+            visible = state != LoginScreenUiState.FORGOT,
             enter = fadeIn(),
             exit = fadeOut()
         ) {
@@ -82,13 +74,14 @@ fun LoginFields(
                         keyboardController?.hide()
                     }
                 ),
-                keyboardOptions = KeyboardOptions(imeAction =
-                if (email.isEmpty()) ImeAction.Previous else ImeAction.Send
+                keyboardOptions = KeyboardOptions(
+                    imeAction =
+                    if (email.isEmpty()) ImeAction.Previous else ImeAction.Send
                 )
             )
         }
         AnimatedVisibility(
-            visible = state == LoginScreenState.REGISTER,
+            visible = state == LoginScreenUiState.REGISTER,
             enter = fadeIn(),
             exit = fadeOut()
         ) {
@@ -107,8 +100,9 @@ fun LoginFields(
                         keyboardController?.hide()
                     }
                 ),
-                keyboardOptions = KeyboardOptions(imeAction =
-                if (email.isEmpty()) ImeAction.Previous else ImeAction.Send
+                keyboardOptions = KeyboardOptions(
+                    imeAction =
+                    if (email.isEmpty()) ImeAction.Previous else ImeAction.Send
                 )
             )
             Spacer(modifier = Modifier.size(paddingValues / 2))
@@ -126,8 +120,9 @@ fun LoginFields(
                         keyboardController?.hide()
                     }
                 ),
-                keyboardOptions = KeyboardOptions(imeAction =
-                if (email.isEmpty()) ImeAction.Previous else ImeAction.Send
+                keyboardOptions = KeyboardOptions(
+                    imeAction =
+                    if (email.isEmpty()) ImeAction.Previous else ImeAction.Send
                 )
             )
             Spacer(modifier = Modifier.size(paddingValues / 2))
@@ -153,7 +148,8 @@ fun LoginFieldsPreview() {
                 onEmailChanged = {},
                 password = "passwordasdas",
                 onPasswordChanged = {},
-                onActionDone = {}
+                onActionDone = {},
+                state = LoginScreenUiState.LOGIN
             )
         }
     }
@@ -177,7 +173,8 @@ fun LoginFieldsPreviewDark() {
                 onEmailChanged = {},
                 password = "passwordasd",
                 onPasswordChanged = {},
-                onActionDone = {}
+                onActionDone = {},
+                state = LoginScreenUiState.LOGIN
             )
         }
     }

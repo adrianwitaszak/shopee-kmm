@@ -8,8 +8,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.adwi.shoppe.ui.components.*
+import com.adwi.shoppe.ui.screens.dashboard.components.Greeting
 import com.adwi.shoppe.ui.theme.paddingValues
-import com.adwi.shoppe.util.Event
 import com.google.accompanist.insets.statusBarsPadding
 
 enum class DashboardState { FIRST, SECOND }
@@ -17,20 +17,23 @@ enum class DashboardState { FIRST, SECOND }
 @Composable
 fun DashboardScreen(
     viewModel: DashboardViewModel,
-    onSignOutClick: () -> Unit
+    onSignOutClick: () -> Unit,
+    message: (String) -> Unit,
 ) {
     var state by remember { mutableStateOf(DashboardState.FIRST) }
     var debug by remember { mutableStateOf(false) }
     var backgroundState by remember { mutableStateOf(AnimatedShadeBackgroundState.FIRST) }
 
-    viewModel.setEvent(Event.ShowSnackBar("test snackbar"))
-    AnimatedShadeBackground(
-        state = backgroundState,
-        debug = debug
-    ) {
-        Box(modifier = Modifier
-            .fillMaxSize()
-            .statusBarsPadding()) {
+    ShoppeScaffold(viewModel = viewModel) {
+        AnimatedShadeBackground(
+            state = backgroundState,
+            debug = debug
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .statusBarsPadding()
+        ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(paddingValues),
@@ -39,6 +42,7 @@ fun DashboardScreen(
                     .align(Alignment.Center)
                     .padding(paddingValues)
             ) {
+                Greeting(name = "Adrian")
                 Text(
                     text = "Home",
                     style = MaterialTheme.typography.headlineLarge
@@ -59,7 +63,8 @@ fun DashboardScreen(
                 ShoppeButton(
                     onClick = {
                         backgroundState = backgroundState.toggleState()
-                        viewModel.setEvent(Event.ShowSnackBar(backgroundState.name))
+                        viewModel.setSnackBar(backgroundState.name)
+                        message(backgroundState.name)
                     },
                     label = {
                         Text(

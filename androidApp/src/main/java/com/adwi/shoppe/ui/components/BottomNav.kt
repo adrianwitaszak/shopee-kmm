@@ -1,14 +1,16 @@
 package com.adwi.shoppe.ui.components
 
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.*
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -19,6 +21,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -39,7 +43,22 @@ fun CustomBottomNavigation(
     gradientColor: Color = MaterialTheme.colorScheme.primaryContainer,
     selectedColor: Color = MaterialTheme.colorScheme.onBackground,
     notSelectedColor: Color = MaterialTheme.colorScheme.secondary,
+    message: String = "",
 ) {
+    val density = LocalDensity.current
+    val transition = updateTransition(targetState = message.isNotBlank(), label = null)
+
+    val rotation by transition.animateFloat(
+        transitionSpec = { tween(4000) }, label = ""
+    ) {
+        println(it)
+        if (it) .5f else 0f
+    }
+
+//    val background by transition.animateColor { state ->
+//        if (state == EnterExitState.Visible) Color.Blue else Color.Gray
+//    }
+
     val horizontalGradientBrush = Brush.linearGradient(
         colors = listOf(gradientColor, backgroundColor)
     )
@@ -56,25 +75,49 @@ fun CustomBottomNavigation(
                 .fillMaxSize()
                 .clip(shape)
                 .background(horizontalGradientBrush)
-        )
-        Row(
-            horizontalArrangement = Arrangement.SpaceAround,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .fillMaxSize()
         ) {
-            items.forEach { item ->
-                val contentColor by animateColorAsState(
-                    targetValue = if (currentScreen == item.route) selectedColor else notSelectedColor.copy(
-                        alpha = .5f
-                    ),
-                    animationSpec = tween(500)
-                )
-                CustomBottomNavigationItem(
-                    item = item,
-                    onClick = { onItemSelected(item.route) },
-                    contentColor = contentColor,
-                )
+            Row(
+                horizontalArrangement = Arrangement.SpaceAround,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .layoutId("row")
+                    .fillMaxSize()
+            ) {
+                items.forEach { item ->
+                    val contentColor by animateColorAsState(
+                        targetValue = if (currentScreen == item.route) selectedColor else notSelectedColor.copy(
+                            alpha = .5f
+                        ),
+                        animationSpec = tween(500)
+                    )
+                    AnimatedVisibility(
+                        visible = message.isEmpty(),
+                        enter = slideInVertically() + expandVertically() + fadeIn(),
+                        exit = slideOutVertically() + shrinkVertically() + fadeOut()
+                    ) {
+                        CustomBottomNavigationItem(
+                            item = item,
+                            onClick = { onItemSelected(item.route) },
+                            contentColor = contentColor,
+                            modifier = Modifier
+                        )
+                    }
+                }
+            }
+            AnimatedVisibility(
+                visible = message.isNotEmpty(),
+                enter = slideInVertically() + expandVertically() + fadeIn(),
+                exit = slideOutVertically() + shrinkVertically() + fadeOut()
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.SpaceAround,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .layoutId("snack")
+                        .fillMaxSize()
+                ) {
+                    Text(text = "snackbarMessage")
+                }
             }
         }
     }
@@ -93,7 +136,9 @@ fun CustomBottomNavigationItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        IconButton(onClick = onClick) {
+        IconButton(
+            onClick = onClick, modifier = Modifier
+        ) {
             Icon(
                 imageVector = item.icon,
                 contentDescription = null,

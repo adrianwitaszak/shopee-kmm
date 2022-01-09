@@ -37,6 +37,7 @@ fun NavGraphBuilder.myNavGraph(
     onSignOutClick: () -> Unit,
     onShopClick: (String, NavBackStackEntry) -> Unit,
     onReviewClick: (String, NavBackStackEntry) -> Unit,
+    message: (String) -> Unit,
 //    navigateToSearch: (NavBackStackEntry) -> Unit,
 //    onAboutUsClick: (NavBackStackEntry) -> Unit,
 //    onPrivacyPolicyClick: (NavBackStackEntry) -> Unit,
@@ -54,7 +55,8 @@ fun NavGraphBuilder.myNavGraph(
         startDestination = HomeSections.DASHBOARD.route
     ) {
         addHomeGraph(
-            onSignOutClick = onSignOutClick
+            onSignOutClick = onSignOutClick,
+            message = message,
 //            onWallpaperClick = onWallpaperClick,
 //            onCategoryClick = onCategoryClick,
 //            navigateToSearch = navigateToSearch,
@@ -173,6 +175,7 @@ fun NavGraphBuilder.addHomeGraph(
 //    onGiveFeedbackClick: () -> Unit,
 //    onRequestFeature: () -> Unit,
 //    onReportBugClick: () -> Unit
+    message: (String) -> Unit,
 ) {
     composable(HomeSections.DASHBOARD.route) { backStackEntry ->
         val viewModel: DashboardViewModel by rememberInstance()
@@ -180,7 +183,8 @@ fun NavGraphBuilder.addHomeGraph(
         DashboardScreen(
             viewModel = viewModel,
 //            onShopClick = { id -> onShopClick(id, backStackEntry) },
-            onSignOutClick = onSignOutClick
+            onSignOutClick = onSignOutClick,
+            message = message
         )
     }
     composable(HomeSections.MANAGER.route) { backStackEntry ->

@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,6 +24,7 @@ import com.adwi.shoppe.ui.navigation.HomeSections
 import com.adwi.shoppe.ui.navigation.MainDestinations
 import com.adwi.shoppe.ui.navigation.myNavGraph
 import com.adwi.shoppe.ui.navigation.rememberMyAppState
+import com.adwi.shoppe.ui.screens.login.LoginScreenEvents
 import com.adwi.shoppe.ui.screens.login.LoginViewModel
 import com.adwi.shoppe.ui.theme.ShoppeTheme
 import com.adwi.shoppe.ui.theme.paddingValues
@@ -33,6 +34,7 @@ import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.delay
 import org.kodein.di.compose.rememberInstance
 
 @ApolloExperimental
@@ -50,9 +52,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContent {
             val systemUiController = rememberSystemUiController()
             val useDarkIcons = MaterialTheme.colors.isLight
@@ -65,8 +65,15 @@ class MainActivity : ComponentActivity() {
                 ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
                     val appState = rememberMyAppState()
                     val loginViewModel: LoginViewModel by rememberInstance()
-                    val token = loginViewModel.getAuthToken()
-                    Log.d(tag, "TOKEN = $token")
+
+                    val loginState by loginViewModel.state.collectAsState()
+
+                    var message by remember { mutableStateOf("") }
+
+                    LaunchedEffect(message.isEmpty()) {
+                        delay(3000)
+                        message = ""
+                    }
 
                     ShoppeScaffold(
                         viewModel = loginViewModel,
@@ -76,6 +83,7 @@ class MainActivity : ComponentActivity() {
                                     items = appState.bottomBarTabs.toList(),
                                     currentScreen = appState.currentRoute!!,
                                     onItemSelected = appState::navigateToBottomBarRoute,
+                                    message = message,
                                     modifier = Modifier
                                         .padding(paddingValues)
                                         .navigationBarsWithImePadding()
@@ -93,18 +101,19 @@ class MainActivity : ComponentActivity() {
                     ) {
                         AnimatedNavHost(
                             navController = appState.navController,
-                            startDestination = if (token.isNotEmpty())
+                            startDestination = if (loginState.token.isNotEmpty())
                                 MainDestinations.DASHBOARD_ROUTE else MainDestinations.LOGIN_ROUTE
                         ) {
                             myNavGraph(
                                 upPress = appState::upPress,
                                 onSignInComplete = { appState.navigateToBottomBarRoute(HomeSections.DASHBOARD.route) },
                                 onSignOutClick = {
-                                    loginViewModel.signOut()
+                                    loginViewModel.onTriggerEvent(LoginScreenEvents.SignOut)
                                     appState.navigateToLogin()
                                 },
                                 onShopClick = appState::navigateToShop,
                                 onReviewClick = appState::navigateToReview,
+                                message = { message = it }
                             )
                         }
                     }

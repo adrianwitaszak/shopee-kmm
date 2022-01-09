@@ -16,8 +16,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
-import androidx.constraintlayout.compose.Transition
-import com.adwi.shoppe.ui.screens.login.LoginScreenState
+import com.adwi.shoppe.ui.screens.login.LoginScreenUiState
 import com.adwi.shoppe.ui.theme.ShoppeTheme
 import com.adwi.shoppe.ui.theme.paddingValues
 
@@ -30,10 +29,11 @@ fun ShoppeButtonText(
     textC: String = "Register",
     color: Color = MaterialTheme.colorScheme.onPrimary,
     style: TextStyle = MaterialTheme.typography.bodyLarge,
-    state: LoginScreenState = LoginScreenState.LOGIN,
+    state: LoginScreenUiState = LoginScreenUiState.LOGIN,
     duration: Int = 1000,
 ) {
-    val loginConstraintSet = ConstraintSet("""{
+    val loginConstraintSet = ConstraintSet(
+        """{
               a: {
                 centerHorizontally: 'parent',
                 centerVertically: 'parent',
@@ -51,10 +51,12 @@ fun ShoppeButtonText(
                  centerVertically: 'parent',
                  rotationX: -180,
                 alpha: 0
-               }
-        }""")
+               },
+        }"""
+    )
 
-    val registerConstraintSet = ConstraintSet("""{
+    val registerConstraintSet = ConstraintSet(
+        """{
           a: {
              centerHorizontally: 'parent',
              centerVertically: 'parent',
@@ -72,10 +74,12 @@ fun ShoppeButtonText(
              centerVertically: 'parent',
              rotationX: 0,
              alpha: 1
-           }
-        }""")
+           },
+        }"""
+    )
 
-    val forgotConstraintSet = ConstraintSet("""{
+    val forgotConstraintSet = ConstraintSet(
+        """{
           a: {
                 centerHorizontally: 'parent',
                 centerVertically: 'parent',
@@ -93,34 +97,16 @@ fun ShoppeButtonText(
              centerVertically: 'parent',
              rotationX: -180,
              alpha: 0
-           }
-        }""")
-
-    val keyframes = Transition("""
-            {
-              Header: { 'animated text' : 'asdasd'},
-              KeyFrames: {
-                KeyAttributes: [
-                  {
-                  target: ['a'],
-                  frames: [0, 50, 100],
-                  rotationX: [0, 90, 90],
-                  },
-                  {
-                  target: ['b', 'c'],
-                  frames: [0, 50, 100],
-                  rotationX: [90, 90, 0],
-                  }
-                ]
-              }
-            }
-            """)
+           },
+        }"""
+    )
 
     val constraints = when (state) {
-        LoginScreenState.LOGIN -> loginConstraintSet
-        LoginScreenState.REGISTER -> registerConstraintSet
-        LoginScreenState.FORGOT -> forgotConstraintSet
-        LoginScreenState.COMPLETE -> forgotConstraintSet
+        LoginScreenUiState.LOGIN -> loginConstraintSet
+        LoginScreenUiState.REGISTER -> registerConstraintSet
+        LoginScreenUiState.FORGOT -> forgotConstraintSet
+        LoginScreenUiState.COMPLETE -> forgotConstraintSet
+        LoginScreenUiState.LOADING -> loginConstraintSet
     }
 
     ConstraintLayout(
