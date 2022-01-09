@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.adwi.shoppe.android.type.UserInput
 import com.adwi.shoppe.repository.AuthRepository
 import com.adwi.shoppe.ui.base.BaseViewModel
+import com.adwi.shoppe.util.Event
 import com.apollographql.apollo3.annotations.ApolloExperimental
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -33,6 +34,9 @@ class LoginViewModel constructor(private val repository: AuthRepository) : BaseV
         viewModelScope.launch {
             val result = repository.signUp(UserInput(email = email, password = password))
             token.value = result
+            if (result.isNotEmpty()) {
+                setEvent(Event.ShowToast("Signed up successfully"))
+            }
         }
     }
 

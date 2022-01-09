@@ -85,7 +85,7 @@ object Android {
         "com.google.accompanist:accompanist-navigation-animation:${Versions.Android.accompanist}"
     const val accompanistPermissions =
         "com.google.accompanist:accompanist-permissions:${Versions.Android.accompanist}"
-    const val systemUiController =
+    const val accompanistSystemUiController =
         "com.google.accompanist:accompanist-systemuicontroller:${Versions.Android.accompanist}"
 }
 

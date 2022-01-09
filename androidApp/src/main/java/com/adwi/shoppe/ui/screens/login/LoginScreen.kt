@@ -32,12 +32,11 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import com.adwi.shoppe.com.adwi.shoppe.ui.screens.login.components.ProfileImage
-import com.adwi.shoppe.ui.components.BackButton
-import com.adwi.shoppe.ui.components.ShoppeButton
-import com.adwi.shoppe.ui.components.ShoppeTextField
+import com.adwi.shoppe.ui.components.*
 import com.adwi.shoppe.ui.screens.login.components.*
 import com.adwi.shoppe.ui.theme.Pink40
 import com.apollographql.apollo3.annotations.ApolloExperimental
+import com.google.accompanist.insets.statusBarsPadding
 
 enum class LoginScreenState { LOGIN, REGISTER, FORGOT, COMPLETE }
 
@@ -58,6 +57,8 @@ fun LoginScreen(
     var password by remember { mutableStateOf("") }
 
     var currentScreen by rememberSaveable { mutableStateOf(LoginScreenState.LOGIN) }
+    var backgroundState by remember { mutableStateOf(AnimatedShadeBackgroundState.FIRST) }
+
     var animateToEnd by remember { mutableStateOf(false) }
 
     val focusManager = LocalFocusManager.current
@@ -84,7 +85,8 @@ fun LoginScreen(
         animationSpec = tween(1000)
     )
 
-    val completeConstraintSet = ConstraintSet("""{
+    val completeConstraintSet = ConstraintSet(
+        """{
           back: {
             top: ['parent', 'top', 0],
             bottom: ['ForgotHeader', 'top', 0],
@@ -143,9 +145,11 @@ fun LoginScreen(
             centerHorizontally: 'parent',
             alpha: 0
         }  
-    }""")
+    }"""
+    )
 
-    val registerConstraintSet = ConstraintSet("""{
+    val registerConstraintSet = ConstraintSet(
+        """{
         back: {
             top: ['parent', 'top', 20],
             start: ['parent', 'start', 24],
@@ -204,9 +208,11 @@ fun LoginScreen(
             centerHorizontally: 'parent',
             alpha: 0
         }
-      }""")
+      }"""
+    )
 
-    val forgotConstraintSet = ConstraintSet("""{
+    val forgotConstraintSet = ConstraintSet(
+        """{
         back: {
             top: ['parent', 'top', 20],
             start: ['parent', 'start', 24],
@@ -264,9 +270,11 @@ fun LoginScreen(
             centerHorizontally: 'parent',
             alpha: 0
         }
-      }""")
+      }"""
+    )
 
-    val loginConstraintSet = ConstraintSet("""{
+    val loginConstraintSet = ConstraintSet(
+        """{
           back: {
             top: ['parent', 'top', 0],
             bottom: ['ForgotHeader', 'top', 0],
@@ -326,7 +334,8 @@ fun LoginScreen(
             centerHorizontally: 'parent',
             alpha: 1
         }  
-    }""")
+    }"""
+    )
 
     val constrains = when (currentScreen) {
         LoginScreenState.LOGIN -> loginConstraintSet
@@ -340,13 +349,16 @@ fun LoginScreen(
         animationSpec = tween(1000),
         modifier = Modifier
             .fillMaxSize()
-            .background(progressBackgroundColor),
+            .background(progressBackgroundColor)
+            .statusBarsPadding(),
     ) {
+        AnimatedShadeBackground(state = backgroundState) {}
         BackButton(
             layoutId = "back",
             onClick = {
                 currentScreen = LoginScreenState.LOGIN
                 animateToEnd = !animateToEnd
+                backgroundState = backgroundState.toggleState()
                 clearFocus(keyboardController, focusManager)
             },
         )
@@ -387,7 +399,7 @@ fun LoginScreen(
                 onNext = { defaultKeyboardAction(ImeAction.Next) },
                 onSend = {
                     clearFocus(keyboardController, focusManager)
-                    Toast.makeText(context, "Signed in", Toast.LENGTH_SHORT).show()
+                    viewModel.setSnackBar("Signed in")
                 }
             ),
             modifier = Modifier.fillMaxWidth(.8f)
@@ -409,6 +421,7 @@ fun LoginScreen(
                 onSend = {
                     clearFocus(keyboardController, focusManager)
                     viewModel.signIn(email, password)
+                    viewModel.setSnackBar("Signed in")
                 }
             ),
             modifier = Modifier.fillMaxWidth(.8f)
@@ -419,6 +432,7 @@ fun LoginScreen(
             onClick = {
                 currentScreen = LoginScreenState.FORGOT
                 animateToEnd = !animateToEnd
+                backgroundState = backgroundState.toggleState()
                 clearFocus(keyboardController, focusManager)
             }
         )
@@ -427,7 +441,19 @@ fun LoginScreen(
             label = { ShoppeButtonText(state = currentScreen) },
             onClick = {
                 clearFocus(keyboardController, focusManager)
-                viewModel.signIn(email, password)
+                backgroundState = backgroundState.toggleState()
+                when (currentScreen) {
+                    LoginScreenState.LOGIN -> {
+                        viewModel.signIn(email, password)
+                    }
+                    LoginScreenState.REGISTER -> {
+                        viewModel.signUp(email, password)
+                    }
+                    LoginScreenState.FORGOT -> {
+                        Toast.makeText(context, "Comming soon", Toast.LENGTH_SHORT).show()
+                    }
+                    LoginScreenState.COMPLETE -> {}
+                }
             },
             buttonColor = progressPrimaryColor,
             modifier = Modifier.fillMaxWidth(.4f),
@@ -437,6 +463,7 @@ fun LoginScreen(
             onClick = {
                 currentScreen = LoginScreenState.REGISTER
                 animateToEnd = !animateToEnd
+                backgroundState = backgroundState.toggleState()
                 clearFocus(keyboardController, focusManager)
             },
         )

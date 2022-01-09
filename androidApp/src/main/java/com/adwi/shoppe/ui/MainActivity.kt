@@ -6,13 +6,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.core.view.WindowCompat
 import androidx.paging.ExperimentalPagingApi
 import coil.annotation.ExperimentalCoilApi
-import com.adwi.shoppe.ui.components.ShoppeBottomBar
+import com.adwi.shoppe.ui.components.CustomBottomNavigation
 import com.adwi.shoppe.ui.components.ShoppeScaffold
 import com.adwi.shoppe.ui.components.ShoppeSnackBarHost
 import com.adwi.shoppe.ui.navigation.HomeSections
@@ -21,9 +26,12 @@ import com.adwi.shoppe.ui.navigation.myNavGraph
 import com.adwi.shoppe.ui.navigation.rememberMyAppState
 import com.adwi.shoppe.ui.screens.login.LoginViewModel
 import com.adwi.shoppe.ui.theme.ShoppeTheme
+import com.adwi.shoppe.ui.theme.paddingValues
 import com.apollographql.apollo3.annotations.ApolloExperimental
 import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.kodein.di.compose.rememberInstance
 
@@ -42,9 +50,19 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
-            ProvideWindowInsets {
-                ShoppeTheme {
+            val systemUiController = rememberSystemUiController()
+            val useDarkIcons = MaterialTheme.colors.isLight
+            SideEffect {
+                systemUiController.setSystemBarsColor(Color.Transparent, darkIcons = useDarkIcons)
+                systemUiController.setStatusBarColor(Color.Transparent, darkIcons = useDarkIcons)
+            }
+
+            ShoppeTheme {
+                ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
                     val appState = rememberMyAppState()
                     val loginViewModel: LoginViewModel by rememberInstance()
                     val token = loginViewModel.getAuthToken()
@@ -54,14 +72,18 @@ class MainActivity : ComponentActivity() {
                         viewModel = loginViewModel,
                         bottomBar = {
                             if (appState.shouldShowBottomBar) {
-                                ShoppeBottomBar(
-                                    tabs = appState.bottomBarTabs,
-                                    currentRoute = appState.currentRoute!!,
-                                    navigateToRoute = appState::navigateToBottomBarRoute,
+                                CustomBottomNavigation(
+                                    items = appState.bottomBarTabs.toList(),
+                                    currentScreen = appState.currentRoute!!,
+                                    onItemSelected = appState::navigateToBottomBarRoute,
+                                    modifier = Modifier
+                                        .padding(paddingValues)
+                                        .navigationBarsWithImePadding()
                                 )
                             }
                         },
                         snackbarHost = {
+                            Log.d("snackbar", "MainActivity")
                             ShoppeSnackBarHost(
                                 hostState = it,
                                 modifier = Modifier

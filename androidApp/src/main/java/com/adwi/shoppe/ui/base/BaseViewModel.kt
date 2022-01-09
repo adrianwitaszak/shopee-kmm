@@ -60,6 +60,7 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     fun setSnackBar(message: String) {
+        Log.d("snackbar", "setSnackBar - $message")
         _snackBarMessage.value = message
     }
 }

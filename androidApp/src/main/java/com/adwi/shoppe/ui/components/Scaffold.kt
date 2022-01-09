@@ -1,5 +1,6 @@
 package com.adwi.shoppe.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.*
@@ -42,6 +43,7 @@ fun ShoppeScaffold(
         LaunchedEffect(scaffoldState.snackbarHostState) {
             scaffoldState.snackbarHostState.showSnackbar(snackbarMessage)
             viewModel.setEvent(Event.ShowSnackBar(""))
+            Log.d("snackbar", "ShoppeScaffold - $snackbarMessage")
         }
     }
 

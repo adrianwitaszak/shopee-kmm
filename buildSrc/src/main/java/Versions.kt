@@ -34,7 +34,7 @@ object Versions {
         const val pagingCompose = "1.0.0-alpha14"
 
         // Android
-        const val accompanist = "0.21.0-beta"
+        const val accompanist = "0.22.0-rc"
         const val coil = "1.4.0"
 
         // Testing

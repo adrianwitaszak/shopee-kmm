@@ -72,5 +72,6 @@ dependencies {
         implementation(accompanistSwipeRefresh)
         implementation(composeFoundationLayout)
         implementation(accompanistNavigationAnimation)
+        implementation(Android.accompanistSystemUiController)
     }
 }
