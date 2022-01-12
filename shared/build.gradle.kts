@@ -101,6 +101,7 @@ val packForXcode by tasks.creating(Sync::class) {
     from({ framework.outputDirectory })
     into(targetDir)
 }
+
 tasks.getByName("build").dependsOn(packForXcode)
 
 apollo {

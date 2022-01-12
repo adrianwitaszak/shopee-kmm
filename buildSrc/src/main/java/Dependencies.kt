@@ -2,6 +2,9 @@ object Build {
     const val gradle = "com.android.tools.build:gradle:${Versions.gradleBuildTool}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin.kotlinVersion}"
     const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.Kotlin.sqlDelight}"
+    const val serialization =
+        "org.jetbrains.kotlin:kotlin-serialization:${Versions.Kotlin.kotlinVersion}"
+    const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
 }
 
 object Kotlin {
@@ -13,11 +16,17 @@ object Kotlin {
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Kotlin.coroutines}"
     const val coil = "io.coil-kt:coil:${Versions.Kotlin.coil}"
     const val kodein = "org.kodein.di:kodein-di:${Versions.Kotlin.kodein}" // DI
-    const val kodeinCompose = "org.kodein.di:kodein-di-framework-compose:${Versions.Kotlin.kodein}" // DI
-    const val kermit = "co.touchlab:kermit:${Versions.Kotlin.kermit}" // Logger - https://github.com/touchlab/Kermit
-    const val kamel = "com.alialbaali.kamel:kamel-image:${Versions.Kotlin.kamel}" // Image loading - https://github.com/alialbaali/Kamel
-    const val pixel = "io.github.mmobin789.pixel:pixel:${Versions.Kotlin.pixel}" // Image loading - https://github.com/mmobin789/pixel
+    const val kodeinCompose =
+        "org.kodein.di:kodein-di-framework-compose:${Versions.Kotlin.kodein}" // DI
+    const val kermit =
+        "co.touchlab:kermit:${Versions.Kotlin.kermit}" // Logger - https://github.com/touchlab/Kermit
+    const val kamel =
+        "com.alialbaali.kamel:kamel-image:${Versions.Kotlin.kamel}" // Image loading - https://github.com/alialbaali/Kamel
+    const val pixel =
+        "io.github.mmobin789.pixel:pixel:${Versions.Kotlin.pixel}" // Image loading - https://github.com/mmobin789/pixel
     const val apollo = "com.apollographql.apollo3:apollo-runtime:${Versions.Kotlin.apollo}"
+    const val koin = "io.insert-koin:koin-ktor:${Versions.Kotlin.koin}"
+
 }
 
 object SqlDelight {

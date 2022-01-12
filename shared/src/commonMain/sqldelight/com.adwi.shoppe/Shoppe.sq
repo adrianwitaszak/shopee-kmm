@@ -14,11 +14,33 @@ CREATE TABLE Review (
     rating INTEGER NOT NULL
 );
 
+CREATE TABLE Service (
+    id TEXT NOT NULL PRIMARY KEY,
+    shopId TEXT NOT NULL,
+    userId TEXT NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    price REAL NOT NULL,
+    duration INTEGER NOT NULL
+);
+
+CREATE TABLE ShopOrder (
+    id TEXT NOT NULL PRIMARY KEY,
+    shopId TEXT NOT NULL,
+    userId TEXT NOT NULL,
+    serviceId TEXT NOT NULL,
+    quantity REAL NOT NULL,
+    purchasedAt REAL NOT NULL,
+    scheduledAt REAL NOT NULL,
+    paid INTEGER NOT NULL
+);
+
 CREATE TABLE UserState (
    userId TEXT NOT NULL,
    token TEXT NOT NULL
 );
 
+-- Shop
 insertShop:
 INSERT INTO Shop(id, userId, name, description, imageUrl)
 VALUES(?, ?, ?, ?, ?);
@@ -42,6 +64,79 @@ removeShopById:
 DELETE FROM Shop
 WHERE id = ?;
 
+-- Review
+insertReview:
+INSERT INTO Review(id, shopId, userId, text, rating)
+VALUES(?, ?, ?, ?, ?);
+
+updateReviewById:
+UPDATE Review
+SET text = ?, rating = ?
+WHERE id = ?;
+
+removeAllReviews:
+DELETE FROM Review;
+
+selectAllReviews:
+SELECT * FROM Review;
+
+selectReviewById:
+SELECT * FROM Review
+WHERE id = ?;
+
+removeReviewById:
+DELETE FROM Review
+WHERE id = ?;
+
+-- Service
+insertService:
+INSERT INTO Service(id, shopId, userId, name, description, price, duration)
+VALUES(?, ?, ?, ?, ?, ?, ?);
+
+updateServiceById:
+UPDATE Service
+SET name = ?, description = ?, price = ?, duration = ?
+WHERE id = ?;
+
+removeAllServices:
+DELETE FROM Service;
+
+selectAllServices:
+SELECT * FROM Service;
+
+selectServiceById:
+SELECT * FROM Service
+WHERE id = ?;
+
+removeServiceById:
+DELETE FROM Service
+WHERE id = ?;
+
+-- Order
+insertShopOrder:
+INSERT INTO ShopOrder(id, userId, shopId, serviceId, quantity, purchasedAt, scheduledAt, paid)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?);
+
+updateShopOrderById:
+UPDATE ShopOrder
+SET quantity = ?, purchasedAt = ?, scheduledAt = ?, paid = ?
+WHERE id = ?;
+
+removeAllShopOrders:
+DELETE FROM ShopOrder;
+
+selectAllShopOrders:
+SELECT * FROM ShopOrder;
+
+selectShopOrderById:
+SELECT * FROM ShopOrder
+WHERE id = ?;
+
+removeShopOrderById:
+DELETE FROM ShopOrder
+WHERE id = ?;
+
+-- UserState
 selectUserState:
 SELECT * FROM UserState
 LIMIT 1;

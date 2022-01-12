@@ -1,5 +1,6 @@
 object Versions {
     const val gradleBuildTool = "7.0.4"
+    const val shadow = "7.0.0"
 
     object Kotlin {
         const val kotlinVersion = "1.6.0"
@@ -12,6 +13,16 @@ object Versions {
         const val kamel = "0.2.2"
         const val pixel = "1.0.0-alpha"
         const val kodein = "7.10.0"
+        const val koin = "3.1.5"
+
+    }
+
+    object Backend {
+        const val ktor = "1.6.7"
+        const val logback = "1.2.10"
+        const val kGraphQL = "0.17.14"
+        const val kMongo = "4.4.0"
+        const val bcrypt = "0.9.0"
     }
 
     object Android {

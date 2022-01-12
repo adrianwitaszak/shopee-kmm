@@ -1,12 +1,9 @@
 package com.adwi.shoppe.cache.mapper
 
-import com.adwi.shoppe.android.GetReviewQuery
-import com.adwi.shoppe.android.GetShopQuery
-import com.adwi.shoppe.android.NewReviewMutation
-import com.adwi.shoppe.android.UpdateReviewMutation
+import com.adwi.shoppe.android.*
 import comadwishoppe.Review
 
-fun GetShopQuery.Review.toReview() = Review(
+fun GetShopByIdQuery.Review.toReview() = Review(
     id = id,
     userId = userId,
     shopId = shopId,
@@ -22,7 +19,15 @@ fun GetReviewQuery.GetReview.toReview() = Review(
     rating = rating.toLong()
 )
 
-fun NewReviewMutation.CreateReview.toReview() = Review(
+fun ReviewsPagedByShopIdQuery.Result.toReview() = Review(
+    id = id,
+    userId = userId,
+    shopId = shopId,
+    text = text,
+    rating = rating.toLong()
+)
+
+fun CreateReviewMutation.CreateReview.toReview() = Review(
     id = id,
     userId = userId,
     shopId = shopId,

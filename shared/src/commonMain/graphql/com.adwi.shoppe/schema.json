@@ -530,6 +530,127 @@
               }
             },
             "args": []
+          },
+          {
+            "name": "orders",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Order"
+                  }
+                }
+              }
+            },
+            "args": []
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Order",
+        "description": "Order object with the attributes text and rating",
+        "fields": [
+          {
+            "name": "id",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "paid",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "purchasedAt",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Long"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "quantity",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "scheduledAt",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Long"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "serviceId",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "shopId",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "userId",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
           }
         ]
       },
@@ -587,6 +708,24 @@
             "args": []
           },
           {
+            "name": "orders",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Order"
+                  }
+                }
+              }
+            },
+            "args": []
+          },
+          {
             "name": "reviews",
             "isDeprecated": false,
             "type": {
@@ -598,6 +737,24 @@
                   "ofType": {
                     "kind": "OBJECT",
                     "name": "Review"
+                  }
+                }
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "services",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Service"
                   }
                 }
               }
@@ -661,6 +818,97 @@
           },
           {
             "name": "text",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "userId",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Service",
+        "description": "Service object with the attributes text and rating",
+        "fields": [
+          {
+            "name": "description",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "duration",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "id",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "name",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "price",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "shopId",
             "isDeprecated": false,
             "type": {
               "kind": "NON_NULL",
@@ -773,6 +1021,43 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ReviewPage",
+        "description": "",
+        "fields": [
+          {
+            "name": "info",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PagingInfo"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "results",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Review"
+                  }
+                }
+              }
+            },
+            "args": []
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
         "name": "Profile",
         "description": "",
         "fields": [
@@ -802,6 +1087,80 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "User"
+              }
+            },
+            "args": []
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "OrderPage",
+        "description": "",
+        "fields": [
+          {
+            "name": "info",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PagingInfo"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "results",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Order"
+                  }
+                }
+              }
+            },
+            "args": []
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ServicePage",
+        "description": "",
+        "fields": [
+          {
+            "name": "info",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PagingInfo"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "results",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Service"
+                  }
+                }
               }
             },
             "args": []
@@ -903,6 +1262,97 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "OrderInput",
+        "description": "The input of the order without the identifier",
+        "inputFields": [
+          {
+            "name": "paid",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "quantity",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float"
+              }
+            }
+          },
+          {
+            "name": "scheduledAt",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Long"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ServiceInput",
+        "description": "The input of the service without the identifier",
+        "inputFields": [
+          {
+            "name": "description",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          },
+          {
+            "name": "duration",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          },
+          {
+            "name": "price",
+            "isDeprecated": false,
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Float"
               }
             }
           }
@@ -1047,7 +1497,7 @@
         "description": "Query object",
         "fields": [
           {
-            "name": "shop",
+            "name": "getShopById",
             "isDeprecated": false,
             "type": {
               "kind": "OBJECT",
@@ -1068,7 +1518,7 @@
             ]
           },
           {
-            "name": "shops",
+            "name": "shopsPagedByUserId",
             "description": "Retrieve shops page",
             "isDeprecated": false,
             "type": {
@@ -1117,6 +1567,44 @@
             ]
           },
           {
+            "name": "reviewsPagedByShopId",
+            "description": "Retrieve reviews page",
+            "isDeprecated": false,
+            "type": {
+              "kind": "OBJECT",
+              "name": "ReviewPage"
+            },
+            "args": [
+              {
+                "name": "shopId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "page",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "size",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              }
+            ]
+          },
+          {
             "name": "getProfile",
             "isDeprecated": false,
             "type": {
@@ -1124,6 +1612,153 @@
               "name": "Profile"
             },
             "args": []
+          },
+          {
+            "name": "getOrder",
+            "description": "Get an existing order",
+            "isDeprecated": false,
+            "type": {
+              "kind": "OBJECT",
+              "name": "Order"
+            },
+            "args": [
+              {
+                "name": "orderId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "ordersPagedByUserId",
+            "description": "Retrieve orders page by userId",
+            "isDeprecated": false,
+            "type": {
+              "kind": "OBJECT",
+              "name": "OrderPage"
+            },
+            "args": [
+              {
+                "name": "page",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "size",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              }
+            ]
+          },
+          {
+            "name": "ordersPagedByShopId",
+            "description": "Retrieve orders page by shopId",
+            "isDeprecated": false,
+            "type": {
+              "kind": "OBJECT",
+              "name": "OrderPage"
+            },
+            "args": [
+              {
+                "name": "shopId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "page",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "size",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              }
+            ]
+          },
+          {
+            "name": "getService",
+            "description": "Get an existing service",
+            "isDeprecated": false,
+            "type": {
+              "kind": "OBJECT",
+              "name": "Service"
+            },
+            "args": [
+              {
+                "name": "serviceId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "servicePagedByShopId",
+            "description": "Retrieve services page",
+            "isDeprecated": false,
+            "type": {
+              "kind": "OBJECT",
+              "name": "ServicePage"
+            },
+            "args": [
+              {
+                "name": "shopId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "page",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "size",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              }
+            ]
           }
         ]
       },
@@ -1333,6 +1968,226 @@
             "args": [
               {
                 "name": "reviewId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "createOrder",
+            "description": "Create a new order",
+            "isDeprecated": false,
+            "type": {
+              "kind": "OBJECT",
+              "name": "Order"
+            },
+            "args": [
+              {
+                "name": "shopId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "serviceid",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "orderInput",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "OrderInput"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "updateOrder",
+            "description": "Update an existing order",
+            "isDeprecated": false,
+            "type": {
+              "kind": "OBJECT",
+              "name": "Order"
+            },
+            "args": [
+              {
+                "name": "orderId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "shopId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "serviceId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "orderInput",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "OrderInput"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "deleteOrder",
+            "description": "Delete a order",
+            "isDeprecated": false,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            },
+            "args": [
+              {
+                "name": "orderId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "createService",
+            "description": "Create a new service",
+            "isDeprecated": false,
+            "type": {
+              "kind": "OBJECT",
+              "name": "Service"
+            },
+            "args": [
+              {
+                "name": "shopId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "serviceInput",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ServiceInput"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "updateService",
+            "description": "Update an existing service",
+            "isDeprecated": false,
+            "type": {
+              "kind": "OBJECT",
+              "name": "Service"
+            },
+            "args": [
+              {
+                "name": "serviceId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "shopId",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              },
+              {
+                "name": "serviceInput",
+                "isDeprecated": false,
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ServiceInput"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "deleteService",
+            "description": "Delete a service",
+            "isDeprecated": false,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            },
+            "args": [
+              {
+                "name": "serviceId",
                 "isDeprecated": false,
                 "type": {
                   "kind": "NON_NULL",
