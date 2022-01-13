@@ -68,7 +68,6 @@ mutation createShop ($shopInput: ShopInput!) {
             name
             price
             shopId
-            userId
         }
         userId
     }
@@ -104,7 +103,6 @@ mutation updateShop ($shopId: String!, $shopInput: ShopInput!) {
             name
             price
             shopId
-            userId
         }
         userId
     }
@@ -176,7 +174,6 @@ mutation createService ($shopId: String!, $serviceInput: ServiceInput!) {
         name
         price
         shopId
-        userId
     }
 }
 
@@ -188,7 +185,6 @@ mutation updateService ($serviceId: String!, $shopId: String!, $serviceInput: Se
         name
         price
         shopId
-        userId
     }
 }
 

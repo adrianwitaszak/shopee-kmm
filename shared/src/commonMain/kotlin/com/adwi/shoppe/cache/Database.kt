@@ -146,7 +146,6 @@ class Database(databaseDriverFactory: DatabaseDriverFactory) {
     private fun insertService(service: Service) {
         dbQuery.insertService(
             service.id,
-            service.userId,
             service.shopId,
             service.name,
             service.description,

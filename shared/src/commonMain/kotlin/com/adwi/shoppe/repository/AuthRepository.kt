@@ -1,6 +1,5 @@
 package com.adwi.shoppe.repository
 
-import android.util.Log
 import com.adwi.shoppe.ApolloProvider
 import com.adwi.shoppe.android.GetProfileQuery
 import com.adwi.shoppe.android.SignInMutation
@@ -25,7 +24,6 @@ import kotlinx.coroutines.flow.onCompletion
 class AuthRepository(apolloProvider: ApolloProvider) : BaseRepository(apolloProvider) {
 
     fun signIn(userInput: UserInput): Flow<DataState<String>> = flow {
-        Log.d("LoginViewModel", "Repo - Sign in")
         emit(DataState.Loading(progressBarState = ProgressBarState.Loading))
         val response = apolloClient.mutation(SignInMutation(userInput)).execute()
         response.data?.signIn?.let { data ->
@@ -42,7 +40,6 @@ class AuthRepository(apolloProvider: ApolloProvider) : BaseRepository(apolloProv
         }
 
     fun signUp(userInput: UserInput): Flow<DataState<String>> = flow {
-        Log.d("LoginViewModel", "Repo - Sign up")
         emit(DataState.Loading(progressBarState = ProgressBarState.Loading))
         val response = apolloClient.mutation(SignUpMutation(userInput)).execute()
         response.data?.signUp?.let { data ->

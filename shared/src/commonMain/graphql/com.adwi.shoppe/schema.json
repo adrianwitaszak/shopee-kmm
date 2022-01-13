@@ -587,7 +587,7 @@
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Long"
+                "name": "String"
               }
             },
             "args": []
@@ -611,7 +611,7 @@
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Long"
+                "name": "String"
               }
             },
             "args": []
@@ -909,18 +909,6 @@
           },
           {
             "name": "shopId",
-            "isDeprecated": false,
-            "type": {
-              "kind": "NON_NULL",
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String"
-              }
-            },
-            "args": []
-          },
-          {
-            "name": "userId",
             "isDeprecated": false,
             "type": {
               "kind": "NON_NULL",
@@ -1301,7 +1289,7 @@
               "kind": "NON_NULL",
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Long"
+                "name": "String"
               }
             }
           }

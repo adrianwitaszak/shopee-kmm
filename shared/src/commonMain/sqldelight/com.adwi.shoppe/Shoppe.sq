@@ -17,7 +17,6 @@ CREATE TABLE Review (
 CREATE TABLE Service (
     id TEXT NOT NULL PRIMARY KEY,
     shopId TEXT NOT NULL,
-    userId TEXT NOT NULL,
     name TEXT NOT NULL,
     description TEXT NOT NULL,
     price REAL NOT NULL,
@@ -90,8 +89,8 @@ WHERE id = ?;
 
 -- Service
 insertService:
-INSERT INTO Service(id, shopId, userId, name, description, price, duration)
-VALUES(?, ?, ?, ?, ?, ?, ?);
+INSERT INTO Service(id, shopId, name, description, price, duration)
+VALUES(?, ?, ?, ?, ?, ?);
 
 updateServiceById:
 UPDATE Service

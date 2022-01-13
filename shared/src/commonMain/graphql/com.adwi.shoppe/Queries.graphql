@@ -28,7 +28,6 @@ query getShopById ($shopId: String!) {
             name
             price
             shopId
-            userId
         }
         userId
     }
@@ -71,7 +70,6 @@ query shopsPagedByUserId ($page: Int, $size: Int) {
                 name
                 price
                 shopId
-                userId
             }
             userId
         }
@@ -137,7 +135,6 @@ query getProfile {
                 name
                 price
                 shopId
-                userId
             }
             userId
         }
@@ -221,7 +218,6 @@ query getService ($serviceId: String!) {
         name
         price
         shopId
-        userId
     }
 }
 
@@ -240,7 +236,6 @@ query servicePagedByShopId ($shopId: String!, $page: Int, $size: Int) {
             name
             price
             shopId
-            userId
         }
     }
 }

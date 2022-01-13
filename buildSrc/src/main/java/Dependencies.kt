@@ -49,26 +49,27 @@ object Android {
         "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.Android.lifecycle}"
 
     // Compose
-    const val composeCompiler = "androidx.compose.compiler:compiler:${Versions.Android.compose}"
+    const val composeCompiler = "androidx.compose.compiler:compiler:${Versions.Android.composeUi}"
     const val composeRuntime = "androidx.compose.runtime:runtime:${Versions.Android.composeRuntime}"
-    const val composeConstrainLayout = "androidx.constraintlayout:constraintlayout-compose:${Versions.Android.composeConstrainLayout}"
-    const val composeUi = "androidx.compose.ui:ui:${Versions.Android.compose}"
-    const val composeUiGraphics = "androidx.compose.ui:ui-graphics:${Versions.Android.compose}"
-    const val composeMaterial = "androidx.compose.material:material:${Versions.Android.compose}"
+    const val composeConstrainLayout =
+        "androidx.constraintlayout:constraintlayout-compose:${Versions.Android.composeConstrainLayout}"
+    const val composeUi = "androidx.compose.ui:ui:${Versions.Android.composeUi}"
+    const val composeUiGraphics = "androidx.compose.ui:ui-graphics:${Versions.Android.composeUi}"
+    const val composeMaterial = "androidx.compose.material:material:${Versions.Android.composeUi}"
     const val composeMaterialIcons =
-        "androidx.compose.material:material-icons-extended:${Versions.Android.compose}"
-    const val composeUiUtil = "androidx.compose.ui:ui-util:${Versions.Android.compose}"
+        "androidx.compose.material:material-icons-extended:${Versions.Android.composeUi}"
+    const val composeUiUtil = "androidx.compose.ui:ui-util:${Versions.Android.composeUi}"
     const val composePreview =
-        "androidx.compose.ui:ui-tooling-preview:${Versions.Android.compose}"
-    const val composeTooling = "androidx.compose.ui:ui-tooling:${Versions.Android.compose}"
+        "androidx.compose.ui:ui-tooling-preview:${Versions.Android.composeUi}"
+    const val composeTooling = "androidx.compose.ui:ui-tooling:${Versions.Android.composeUi}"
     const val composeFoundation =
-        "androidx.compose.foundation:foundation:${Versions.Android.compose}"
+        "androidx.compose.foundation:foundation:${Versions.Android.composeUi}"
     const val composeFoundationLayout =
-        "androidx.compose.foundation:foundation-layout:${Versions.Android.compose}"
+        "androidx.compose.foundation:foundation-layout:${Versions.Android.composeUi}"
     const val composeAnimation =
-        "androidx.compose.animation:animation:${Versions.Android.compose}"
+        "androidx.compose.animation:animation:${Versions.Android.composeUi}"
     const val composeAnimationCore =
-        "androidx.compose.animation:animation-core:${Versions.Android.compose}"
+        "androidx.compose.animation:animation-core:${Versions.Android.composeUi}"
     const val composeMaterial3 =
         "androidx.compose.material3:material3:${Versions.Android.material3}"
     const val composeNavigation =

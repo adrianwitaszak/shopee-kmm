@@ -17,7 +17,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Android.compose
+        kotlinCompilerExtensionVersion = Versions.Android.composeUi
     }
     buildTypes {
         getByName("release") {
@@ -45,6 +45,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 dependencies {
     implementation(project(Modules.SHARED))
+
+    // Needed to run Compose Motion Layout Inspector
     implementation("androidx.constraintlayout:constraintlayout-core:1.0.2")
 
     with(Android) {

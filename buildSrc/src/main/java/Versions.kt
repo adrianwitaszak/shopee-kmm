@@ -3,7 +3,7 @@ object Versions {
     const val shadow = "7.0.0"
 
     object Kotlin {
-        const val kotlinVersion = "1.6.0"
+        const val kotlinVersion = "1.6.10"
         const val coroutines = "1.5.2"
         const val serialization = "1.3.2"
         const val coil = "1.4.0"
@@ -17,14 +17,6 @@ object Versions {
 
     }
 
-    object Backend {
-        const val ktor = "1.6.7"
-        const val logback = "1.2.10"
-        const val kGraphQL = "0.17.14"
-        const val kMongo = "4.4.0"
-        const val bcrypt = "0.9.0"
-    }
-
     object Android {
         const val core = "1.7.0"
 
@@ -36,8 +28,8 @@ object Versions {
         const val workManager = "2.7.1"
 
         // Compose
-        const val compose = "1.1.0-rc01"
-        const val composeRuntime = "1.1.0-rc01"
+        const val composeUi = "1.2.0-alpha01"
+        const val composeRuntime = "1.2.0-alpha01"
         const val composeConstrainLayout = "1.0.0-rc02"
         const val material3 = "1.0.0-alpha02"
         const val navigation = "2.4.0-rc01"

@@ -8,6 +8,7 @@ import com.apollographql.apollo3.api.Optional
 import comadwishoppe.Shop
 
 class ShopRepository(apolloProvider: ApolloProvider) : BaseRepository(apolloProvider) {
+
     suspend fun getShops(page: Optional<Int>, size: Optional<Int>): Shops? {
         val response = apolloClient.query(ShopsPagedByUserIdQuery(page, size)).execute()
         return response.data?.shopsPagedByUserId?.toShops()

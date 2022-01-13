@@ -6,7 +6,6 @@ import comadwishoppe.Service
 
 fun GetServiceQuery.GetService.toService() = Service(
     id = id,
-    userId = userId,
     shopId = shopId,
     name = name,
     description = description,
@@ -16,7 +15,6 @@ fun GetServiceQuery.GetService.toService() = Service(
 
 fun ServicePagedByShopIdQuery.Result.toService() = Service(
     id = id,
-    userId = userId,
     shopId = shopId,
     name = name,
     description = description,
@@ -26,7 +24,6 @@ fun ServicePagedByShopIdQuery.Result.toService() = Service(
 
 fun GetShopByIdQuery.Service.toService() = Service(
     id = id,
-    userId = userId,
     shopId = shopId,
     name = name,
     description = description,
@@ -36,7 +33,6 @@ fun GetShopByIdQuery.Service.toService() = Service(
 
 fun CreateServiceMutation.CreateService.toService() = Service(
     id = id,
-    userId = userId,
     shopId = shopId,
     name = name,
     description = description,
@@ -46,7 +42,6 @@ fun CreateServiceMutation.CreateService.toService() = Service(
 
 fun UpdateServiceMutation.UpdateService.toService() = Service(
     id = id,
-    userId = userId,
     shopId = shopId,
     name = name,
     description = description,
