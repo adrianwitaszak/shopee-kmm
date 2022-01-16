@@ -1,11 +1,10 @@
 package com.shoppe.di
 
-import com.shoppe.util.API_KEY
 import org.koin.dsl.module
 import org.litote.kmongo.KMongo
 
-val key = System.getenv()
+val key = System.getenv("MONGO_URI") ?: ""
 
 val mainModule = module(createdAtStart = true) {
-    factory { KMongo.createClient(API_KEY) }
+    factory { KMongo.createClient(key) }
 }

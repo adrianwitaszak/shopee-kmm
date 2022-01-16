@@ -4,10 +4,11 @@ import com.shoppe.di.mainModule
 import com.shoppe.plugins.configureContentNegotiations
 import com.shoppe.plugins.configureGraphQL
 import com.shoppe.plugins.configureRouting
-import com.shoppe.util.PORT
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import org.koin.core.context.startKoin
+
+val PORT = System.getenv("PORT")?.toInt() ?: 0
 
 fun main() {
 
