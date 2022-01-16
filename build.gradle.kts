@@ -10,7 +10,7 @@ buildscript {
         classpath(Build.kotlin)
         classpath(Build.sqlDelight)
         classpath(Build.serialization)
-
+        classpath(Build.shadow)
     }
 }
 
@@ -23,9 +23,6 @@ allprojects {
         maven(url = "https://androidx.dev/snapshots/builds/7888785/artifacts/repository")
         maven(url = "https://maven.pkg.jetbrains.space/public/p/kotlinx-coroutines/maven")
         maven(url = "https://maven.pkg.jetbrains.space/public/p/ktor/eap")
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
-}
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
 }

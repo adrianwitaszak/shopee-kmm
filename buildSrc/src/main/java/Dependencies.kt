@@ -4,7 +4,7 @@ object Build {
     const val sqlDelight = "com.squareup.sqldelight:gradle-plugin:${Versions.Kotlin.sqlDelight}"
     const val serialization =
         "org.jetbrains.kotlin:kotlin-serialization:${Versions.Kotlin.kotlinVersion}"
-    const val shadow = "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:${Versions.shadow}"
+    const val shadow = "gradle.plugin.com.github.johnrengelman:shadow:${Versions.shadow}"
 }
 
 object Kotlin {
@@ -15,9 +15,6 @@ object Kotlin {
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Kotlin.coroutines}"
     const val coil = "io.coil-kt:coil:${Versions.Kotlin.coil}"
-    const val kodein = "org.kodein.di:kodein-di:${Versions.Kotlin.kodein}" // DI
-    const val kodeinCompose =
-        "org.kodein.di:kodein-di-framework-compose:${Versions.Kotlin.kodein}" // DI
     const val kermit =
         "co.touchlab:kermit:${Versions.Kotlin.kermit}" // Logger - https://github.com/touchlab/Kermit
     const val kamel =
@@ -25,8 +22,29 @@ object Kotlin {
     const val pixel =
         "io.github.mmobin789.pixel:pixel:${Versions.Kotlin.pixel}" // Image loading - https://github.com/mmobin789/pixel
     const val apollo = "com.apollographql.apollo3:apollo-runtime:${Versions.Kotlin.apollo}"
-    const val koin = "io.insert-koin:koin-ktor:${Versions.Kotlin.koin}"
+}
 
+object Backend {
+    const val logback = "ch.qos.logback:logback-classic:${Versions.Backend.logbackVersion}"
+
+    const val ktorServer = "io.ktor:ktor-server-netty:${Versions.Backend.ktorVersion}"
+    const val ktorGson = "io.ktor:ktor-gson:${Versions.Backend.ktorVersion}"
+    const val ktorAuth = "io.ktor:ktor-auth:${Versions.Backend.ktorVersion}"
+    const val ktorAuthJwt = "io.ktor:ktor-auth-jwt:${Versions.Backend.ktorVersion}"
+
+    const val kMongo = "org.litote.kmongo:kmongo:${Versions.Backend.kMongoVersion}"
+    const val kGraphQL = "com.apurebase:kgraphql:${Versions.Backend.kGraphQLVersion}"
+    const val kGraphQLKtor = "com.apurebase:kgraphql-ktor:${Versions.Backend.kGraphQLVersion}"
+
+    const val bCrypt = "at.favre.lib:bcrypt:${Versions.Backend.bcryptVersion}"
+
+    const val ktorTest = "io.ktor:ktor-server-tests:${Versions.Backend.ktorVersion}"
+}
+
+object Koin {
+    const val android = "io.insert-koin:koin-android:${Versions.Kotlin.koin}"
+    const val compose = "io.insert-koin:koin-androidx-compose:${Versions.Kotlin.koin}"
+    const val ktor = "io.insert-koin:koin-ktor:${Versions.Backend.koinVersion}"
 }
 
 object SqlDelight {

@@ -35,7 +35,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.delay
-import org.kodein.di.compose.rememberInstance
+import org.koin.androidx.compose.viewModel
 
 @ApolloExperimental
 @ExperimentalAnimationApi
@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
             ShoppeTheme {
                 ProvideWindowInsets(windowInsetsAnimationsEnabled = true) {
                     val appState = rememberMyAppState()
-                    val loginViewModel: LoginViewModel by rememberInstance()
+                    val loginViewModel: LoginViewModel by viewModel()
 
                     val loginState by loginViewModel.state.collectAsState()
 

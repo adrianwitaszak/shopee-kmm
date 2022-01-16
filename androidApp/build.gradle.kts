@@ -1,3 +1,6 @@
+import AndroidConfig.javaVersionName
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id(Plugins.ANDROID_APPLICATION)
     kotlin(Plugins.KOTLIN_ANDROID)
@@ -27,14 +30,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = javaVersionName
+        targetCompatibility = javaVersionName
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = AndroidConfig.javaVersion
         freeCompilerArgs = listOf(
             "-Xskip-prerelease-check",
             "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
@@ -74,6 +77,6 @@ dependencies {
         implementation(accompanistSwipeRefresh)
         implementation(composeFoundationLayout)
         implementation(accompanistNavigationAnimation)
-        implementation(Android.accompanistSystemUiController)
+        implementation(accompanistSystemUiController)
     }
 }

@@ -1,4 +1,5 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import AndroidConfig.javaVersionName
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin(Plugins.KOTLIN_MULTIPLATFORM)
@@ -6,6 +7,8 @@ plugins {
     id(Plugins.APOLLO).version("3.0.0")
     id(Plugins.SQL_DELIGHT)
 }
+
+version = "1.0"
 
 // workaround for https://youtrack.jetbrains.com/issue/KT-43944
 android {
@@ -22,6 +25,10 @@ android {
         create("testApi")
         create("testDebugApi")
         create("testReleaseApi")
+    }
+    compileOptions {
+        sourceCompatibility = javaVersionName
+        targetCompatibility = javaVersionName
     }
 }
 
@@ -63,7 +70,8 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(SqlDelight.androidDriver)
-                api(Kotlin.kodeinCompose)
+                api(Koin.android)
+                api(Koin.compose)
             }
         }
         val androidTest by getting {
@@ -83,26 +91,11 @@ kotlin {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<KotlinCompile> {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = AndroidConfig.javaVersion
     }
 }
-
-val packForXcode by tasks.creating(Sync::class) {
-    group = "build"
-    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-    val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
-    val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
-    val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
-    inputs.property("mode", mode)
-    dependsOn(framework.linkTask)
-    val targetDir = File(buildDir, "xcode-frameworks")
-    from({ framework.outputDirectory })
-    into(targetDir)
-}
-
-tasks.getByName("build").dependsOn(packForXcode)
 
 apollo {
     packageName.set(AndroidConfig.applicationId)

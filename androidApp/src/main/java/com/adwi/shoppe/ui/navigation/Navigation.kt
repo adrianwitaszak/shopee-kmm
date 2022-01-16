@@ -21,7 +21,7 @@ import com.adwi.shoppe.ui.screens.settings.SettingsViewModel
 import com.google.accompanist.navigation.animation.composable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
-import org.kodein.di.compose.rememberInstance
+import org.koin.androidx.compose.viewModel
 
 @ExperimentalCoroutinesApi
 @InternalCoroutinesApi
@@ -71,7 +71,7 @@ fun NavGraphBuilder.myNavGraph(
         )
     }
     composable(route = MainDestinations.LOGIN_ROUTE) {
-        val viewModel: LoginViewModel by rememberInstance()
+        val viewModel by viewModel<LoginViewModel>()
 
         LoginScreen(
             viewModel = viewModel,
@@ -178,7 +178,7 @@ fun NavGraphBuilder.addHomeGraph(
     message: (String) -> Unit,
 ) {
     composable(HomeSections.DASHBOARD.route) { backStackEntry ->
-        val viewModel: DashboardViewModel by rememberInstance()
+        val viewModel by viewModel<DashboardViewModel>()
 
         DashboardScreen(
             viewModel = viewModel,
@@ -188,7 +188,7 @@ fun NavGraphBuilder.addHomeGraph(
         )
     }
     composable(HomeSections.MANAGER.route) { backStackEntry ->
-        val viewModel: ManagerViewModel by rememberInstance()
+        val viewModel by viewModel<ManagerViewModel>()
 //
 //        viewModel.restoreSavedQuery()
 //        getCurrentSettings(viewModel, settings)
@@ -202,7 +202,7 @@ fun NavGraphBuilder.addHomeGraph(
         )
     }
     composable(HomeSections.PLANNER.route) { backStackEntry ->
-        val viewModel: PlannerViewModel by rememberInstance()
+        val viewModel by viewModel<PlannerViewModel>()
 //
 //        viewModel.getFavorites()
 //        getCurrentSettings(viewModel, settings)
@@ -217,7 +217,7 @@ fun NavGraphBuilder.addHomeGraph(
         )
     }
     composable(HomeSections.SETTINGS.route) { backStackEntry ->
-        val viewModel: SettingsViewModel by rememberInstance()
+        val viewModel by viewModel<SettingsViewModel>()
 //
 //        viewModel.getSettings()
 //
