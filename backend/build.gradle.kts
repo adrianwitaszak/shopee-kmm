@@ -14,7 +14,6 @@ sourceSets["main"].resources.srcDirs("resources")
 
 application {
     mainClassName = "com.shoppe.ServerKt"
-//    mainClass.set("ServerKt")
 }
 
 tasks.withType<Jar> {

@@ -1,2 +1,3 @@
 /build
-*.MongoKey.kt
+*./Secret.kt
+.*Secret*
