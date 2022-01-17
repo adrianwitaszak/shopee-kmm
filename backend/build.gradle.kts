@@ -11,8 +11,8 @@ plugins {
 group = "com.adwi.ktor"
 version = "0.0.1"
 
-kotlin.sourceSets["main"].kotlin.srcDirs("src")
-sourceSets["main"].resources.srcDirs("resources")
+//kotlin.sourceSets["main"].kotlin.srcDirs("src")
+//sourceSets["main"].resources.srcDirs("resources")
 
 application {
     mainClassName = "com.adwi.ktor.ServerKt"
@@ -43,15 +43,11 @@ dependencies {
         implementation(gson)
         implementation(auth)
         implementation(jwt)
-        implementation(jackson)
-        implementation(locations)
-        implementation(hostCommon)
         implementation(test)
     }
     with(Backend) {
         implementation(logback)
         implementation(kMongo)
-        implementation(kMongoCoroutine)
         implementation(kGraphQL)
         implementation(kGraphQLKtor)
         implementation(bCrypt)

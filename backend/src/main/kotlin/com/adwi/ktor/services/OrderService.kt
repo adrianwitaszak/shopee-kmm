@@ -25,12 +25,7 @@ class OrderService : KoinComponent {
         return repo.getOrdersPageByUserId(userId, page, size)
     }
 
-    fun createOrder(
-        userId: String,
-        shopId: String,
-        serviceId: String,
-        orderInput: OrderInput,
-    ): Order {
+    fun createOrder(userId: String, shopId: String, serviceId: String, orderInput: OrderInput): Order {
         val uid = UUID.randomUUID().toString()
         val review = Order(
             id = uid,
@@ -44,13 +39,7 @@ class OrderService : KoinComponent {
         return repo.add(review)
     }
 
-    fun updateOrder(
-        userId: String,
-        orderId: String,
-        shopId: String,
-        serviceId: String,
-        orderInput: OrderInput,
-    ): Order {
+    fun updateOrder(userId: String, orderId: String, shopId: String, serviceId: String, orderInput: OrderInput): Order {
         val review = repo.getById(orderId)
         if (review.userId == userId) {
             val updates = Order(

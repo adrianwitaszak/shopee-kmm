@@ -9,7 +9,7 @@ import com.auth0.jwt.JWT
 import com.auth0.jwt.JWTVerifier
 import com.auth0.jwt.algorithms.Algorithm
 import com.mongodb.client.MongoClient
-import io.ktor.application.*
+import io.ktor.application.ApplicationCall
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import java.nio.charset.StandardCharsets
@@ -55,8 +55,7 @@ class AuthService : KoinComponent {
      */
 
     fun signUp(userInput: UserInput): UserResponse? {
-        val hashedPassword =
-            BCrypt.withDefaults().hash(10, userInput.password.toByteArray(StandardCharsets.UTF_8))
+        val hashedPassword = BCrypt.withDefaults().hash(10, userInput.password.toByteArray(StandardCharsets.UTF_8))
         val id = UUID.randomUUID().toString()
         val emailUser = repo.getUserByEmail(userInput.email)
         if (emailUser != null) {

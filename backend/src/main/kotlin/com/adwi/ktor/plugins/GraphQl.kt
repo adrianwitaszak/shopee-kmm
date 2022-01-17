@@ -27,7 +27,6 @@ fun Application.configureGraphQL() {
         val serviceService = ServiceService()
 
         playground = true
-
         context { call ->
             authService.verifyToken(call)?.let { +it }
             +log
