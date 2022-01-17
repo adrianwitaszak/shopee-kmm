@@ -15,6 +15,7 @@ object Versions {
         const val pixel = "1.0.0-alpha"
         const val kodein = "7.10.0"
         const val koin = "3.1.5"
+        const val decompose = "0.5.0"
     }
 
     object Backend {

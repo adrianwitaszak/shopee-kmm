@@ -22,6 +22,7 @@ object Kotlin {
     const val pixel =
         "io.github.mmobin789.pixel:pixel:${Versions.Kotlin.pixel}" // Image loading - https://github.com/mmobin789/pixel
     const val apollo = "com.apollographql.apollo3:apollo-runtime:${Versions.Kotlin.apollo}"
+    const val decompose = "com.arkivanov.decompose:extensions-compose-jetpack:${Versions.Kotlin.decompose}"
 }
 
 object Backend {
