@@ -8,14 +8,14 @@ plugins {
     id(Plugins.KTLINT)
 }
 
-group = "com.shoppe"
+group = "com.adwi.ktor"
 version = "0.0.1"
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src")
 sourceSets["main"].resources.srcDirs("resources")
 
 application {
-    mainClassName = "com.shoppe.ServerKt"
+    mainClassName = "com.adwi.ktor.ServerKt"
 }
 
 tasks.withType<Jar> {
