@@ -5,6 +5,7 @@ object Build {
     const val serialization =
         "org.jetbrains.kotlin:kotlin-serialization:${Versions.Kotlin.kotlinVersion}"
     const val shadow = "gradle.plugin.com.github.johnrengelman:shadow:${Versions.shadow}"
+    const val ktLint = "org.jlleitschuh.gradle:ktlint-gradle:${Versions.ktLint}"
 }
 
 object Kotlin {
@@ -25,21 +26,26 @@ object Kotlin {
     const val decompose = "com.arkivanov.decompose:extensions-compose-jetpack:${Versions.Kotlin.decompose}"
 }
 
+object Ktor {
+    const val core = "io.ktor:ktor-server-core:${Versions.Backend.ktorVersion}"
+    const val netty = "io.ktor:ktor-server-netty:${Versions.Backend.ktorVersion}"
+    const val gson = "io.ktor:ktor-gson:${Versions.Backend.ktorVersion}"
+    const val auth = "io.ktor:ktor-auth:${Versions.Backend.ktorVersion}"
+    const val jwt = "io.ktor:ktor-auth-jwt:${Versions.Backend.ktorVersion}"
+    const val jackson = "io.ktor:ktor-jackson:${Versions.Backend.ktorVersion}"
+    const val locations = "io.ktor:ktor-locations:${Versions.Backend.ktorVersion}"
+    const val hostCommon = "io.ktor:ktor-server-host-common:${Versions.Backend.ktorVersion}"
+
+    const val test = "io.ktor:ktor-server-tests:${Versions.Backend.ktorVersion}"
+}
+
 object Backend {
     const val logback = "ch.qos.logback:logback-classic:${Versions.Backend.logbackVersion}"
-
-    const val ktorServer = "io.ktor:ktor-server-netty:${Versions.Backend.ktorVersion}"
-    const val ktorGson = "io.ktor:ktor-gson:${Versions.Backend.ktorVersion}"
-    const val ktorAuth = "io.ktor:ktor-auth:${Versions.Backend.ktorVersion}"
-    const val ktorAuthJwt = "io.ktor:ktor-auth-jwt:${Versions.Backend.ktorVersion}"
-
     const val kMongo = "org.litote.kmongo:kmongo:${Versions.Backend.kMongoVersion}"
+    const val kMongoCoroutine = "org.litote.kmongo:kmongo-coroutine:${Versions.Backend.kMongoVersion}"
     const val kGraphQL = "com.apurebase:kgraphql:${Versions.Backend.kGraphQLVersion}"
     const val kGraphQLKtor = "com.apurebase:kgraphql-ktor:${Versions.Backend.kGraphQLVersion}"
-
     const val bCrypt = "at.favre.lib:bcrypt:${Versions.Backend.bcryptVersion}"
-
-    const val ktorTest = "io.ktor:ktor-server-tests:${Versions.Backend.ktorVersion}"
 }
 
 object Koin {

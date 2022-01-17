@@ -1,6 +1,7 @@
 object Versions {
     const val gradleBuildTool = "7.0.4"
     const val shadow = "7.1.2"
+    const val ktLint = "9.4.1"
 
     object Kotlin {
         const val kotlinVersion = "1.6.10"
@@ -25,6 +26,7 @@ object Versions {
         const val kMongoVersion = "4.4.0"
         const val koinVersion = "3.1.4"
         const val bcryptVersion = "0.9.0"
+        const val hikari = "4.0.3"
     }
 
     object Android {

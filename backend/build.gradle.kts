@@ -1,9 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
 plugins {
     application
-    kotlin("jvm")
-    id("com.github.johnrengelman.shadow")
+    kotlin(Plugins.JVM)
+    id(Plugins.SHADOW)
+    id(Plugins.KTLINT)
 }
 
 group = "com.shoppe"
@@ -35,17 +37,24 @@ tasks.withType<KotlinCompile> {
 }
 
 dependencies {
+    with(Ktor) {
+        implementation(core)
+        implementation(netty)
+        implementation(gson)
+        implementation(auth)
+        implementation(jwt)
+        implementation(jackson)
+        implementation(locations)
+        implementation(hostCommon)
+        implementation(test)
+    }
     with(Backend) {
         implementation(logback)
-        implementation(ktorServer)
-        implementation(ktorGson)
-        implementation(ktorAuth)
-        implementation(ktorAuthJwt)
         implementation(kMongo)
+        implementation(kMongoCoroutine)
         implementation(kGraphQL)
         implementation(kGraphQLKtor)
         implementation(bCrypt)
-        implementation(ktorTest)
     }
     with(Koin) {
         implementation(ktor)
