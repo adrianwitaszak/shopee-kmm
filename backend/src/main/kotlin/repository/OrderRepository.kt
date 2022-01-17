@@ -22,7 +22,6 @@ class OrderRepository(client: MongoClient) : RepositoryInterface<Order> {
     fun getOrdersByShopId(shopId: String): List<Order> {
         return try {
             val res = col.find(Order::shopId eq shopId)
-                ?: throw Exception("No order with that shop ID exists")
             res.asIterable().map { it }
         } catch (t: Throwable) {
             throw Exception("Cannot find order")
@@ -32,7 +31,6 @@ class OrderRepository(client: MongoClient) : RepositoryInterface<Order> {
     fun getOrdersByUserId(userId: String): List<Order> {
         return try {
             val res = col.find(Order::userId eq userId)
-                ?: throw Exception("No order with that user ID exists")
             res.asIterable().map { it }
         } catch (t: Throwable) {
             throw Exception("Cannot find order")
@@ -42,7 +40,6 @@ class OrderRepository(client: MongoClient) : RepositoryInterface<Order> {
     fun getOrdersByServiceId(serviceId: String): List<Order> {
         return try {
             val res = col.find(Order::serviceId eq serviceId)
-                ?: throw Exception("No order with that service ID exists")
             res.asIterable().map { it }
         } catch (t: Throwable) {
             throw Exception("Cannot find order")
@@ -53,7 +50,6 @@ class OrderRepository(client: MongoClient) : RepositoryInterface<Order> {
         try {
             val skips = page * size
             val res = col.find(Order::userId eq userId).skip(skips).limit(size)
-                ?: throw Exception("No orders exist")
             val results = res.asIterable().map { it }
             val total = col.countDocuments(Order::userId eq userId)
             val totalPages = (total / size) + 1
@@ -70,7 +66,6 @@ class OrderRepository(client: MongoClient) : RepositoryInterface<Order> {
         try {
             val skips = page * size
             val res = col.find(Order::shopId eq shopId).skip(skips).limit(size)
-                ?: throw Exception("No orders exist")
             val results = res.asIterable().map { it }
             val total = col.countDocuments(Order::shopId eq shopId)
             val totalPages = (total / size) + 1

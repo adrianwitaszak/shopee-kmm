@@ -1,8 +1,9 @@
 package com.shoppe.plugins
 
-import io.ktor.application.*
-import io.ktor.features.*
-import io.ktor.gson.*
+import io.ktor.application.Application
+import io.ktor.application.install
+import io.ktor.features.ContentNegotiation
+import io.ktor.gson.gson
 
 fun Application.configureContentNegotiations() {
     install(ContentNegotiation) {

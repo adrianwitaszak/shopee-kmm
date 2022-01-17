@@ -22,7 +22,6 @@ class ServiceRepository(client: MongoClient) : RepositoryInterface<Service> {
     fun getServicesByShopId(shopId: String): List<Service> {
         return try {
             val res = col.find(Service::shopId eq shopId)
-                ?: throw Exception("No service with that shop ID exists")
             res.asIterable().map { it }
         } catch (t: Throwable) {
             throw Exception("Cannot find service")
@@ -37,7 +36,6 @@ class ServiceRepository(client: MongoClient) : RepositoryInterface<Service> {
         try {
             val skips = page * size
             val res = col.find(Service::shopId eq shopId).skip(skips).limit(size)
-                ?: throw Exception("No services exist")
             val results = res.asIterable().toList()
             val total = col.countDocuments(Service::shopId eq shopId)
             val totalPages = (total / size) + 1

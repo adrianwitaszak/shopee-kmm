@@ -8,7 +8,7 @@ object Build {
 }
 
 object Kotlin {
-    const val kotlin =
+    const val stdlib =
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.Kotlin.kotlinVersion}"
     const val coroutinesCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.coroutines}"

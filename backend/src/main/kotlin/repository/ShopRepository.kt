@@ -31,7 +31,6 @@ class ShopRepository(client: MongoClient) : RepositoryInterface<Shop> {
         try {
             val skips = page * size
             val res = col.find(Shop::userId eq userId).skip(skips).limit(size)
-                ?: throw Exception("No shops exist")
             val results = res.asIterable().map { it }
             val totalShops = col.countDocuments(Shop::userId eq userId)
             val totalPages = (totalShops / size) + 1

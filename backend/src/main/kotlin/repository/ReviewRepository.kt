@@ -22,7 +22,6 @@ class ReviewRepository(client: MongoClient) : RepositoryInterface<Review> {
     fun getReviewsByShopId(shopId: String): List<Review> {
         return try {
             val res = col.find(Review::shopId eq shopId)
-                ?: throw Exception("No review with that shop ID exists")
             res.asIterable().map { it }
         } catch (t: Throwable) {
             throw Exception("Cannot find reviews")
@@ -33,7 +32,6 @@ class ReviewRepository(client: MongoClient) : RepositoryInterface<Review> {
         try {
             val skips = page * size
             val res = col.find(Review::shopId eq shopId).skip(skips).limit(size)
-                ?: throw Exception("No reviews exist")
             val results = res.asIterable().map { it }
             val total = col.countDocuments(Review::shopId eq shopId)
             val totalPages = (total / size) + 1

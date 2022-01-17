@@ -1,8 +1,10 @@
 package com.shoppe.plugins
 
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.application.Application
+import io.ktor.application.call
+import io.ktor.response.respondText
+import io.ktor.routing.get
+import io.ktor.routing.routing
 
 fun Application.configureRouting() {
     routing {

@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     application
-    id("kotlin-platform-jvm")
+    kotlin("jvm")
     id("com.github.johnrengelman.shadow")
 }
 
@@ -47,5 +47,10 @@ dependencies {
         implementation(bCrypt)
         implementation(ktorTest)
     }
-    implementation(Koin.ktor)
+    with(Koin) {
+        implementation(ktor)
+    }
+    with(Kotlin) {
+        implementation(stdlib)
+    }
 }
