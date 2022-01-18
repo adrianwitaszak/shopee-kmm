@@ -11,3 +11,4 @@ rootProject.name = "shoppe-kmp"
 include(":androidApp")
 include(":shared")
 include(":backend")
+include(":compose-desktop")

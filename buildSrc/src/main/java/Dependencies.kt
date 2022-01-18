@@ -22,7 +22,10 @@ object Kotlin {
     const val pixel =
         "io.github.mmobin789.pixel:pixel:${Versions.Kotlin.pixel}" // Image loading - https://github.com/mmobin789/pixel
     const val apollo = "com.apollographql.apollo3:apollo-runtime:${Versions.Kotlin.apollo}"
-    const val decompose = "com.arkivanov.decompose:extensions-compose-jetpack:${Versions.Kotlin.decompose}"
+    const val decompose = "com.arkivanov.decompose:decompose:${Versions.Kotlin.decompose}"
+    const val decomposeComposeJetbrains =
+        "com.arkivanov.decompose:extensions-compose-jetbrains:${Versions.Kotlin.decompose}"
+    const val mviKotlin = "com.arkivanov.mvikotlin:mvikotlin:${Versions.Kotlin.mviKotlin}"
 }
 
 object Ktor {
@@ -48,6 +51,8 @@ object Backend {
 }
 
 object Koin {
+    const val core = "io.insert-koin:koin-core:${Versions.Kotlin.koin}"
+    const val test = "io.insert-koin:koin-test:${Versions.Kotlin.koin}"
     const val android = "io.insert-koin:koin-android:${Versions.Kotlin.koin}"
     const val compose = "io.insert-koin:koin-androidx-compose:${Versions.Kotlin.koin}"
     const val ktor = "io.insert-koin:koin-ktor:${Versions.Backend.koinVersion}"
@@ -55,8 +60,12 @@ object Koin {
 
 object SqlDelight {
     const val runtime = "com.squareup.sqldelight:runtime:${Versions.Kotlin.sqlDelight}"
+    const val coroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.Kotlin.sqlDelight}"
     const val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.Kotlin.sqlDelight}"
     const val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.Kotlin.sqlDelight}"
+    const val nativeDriverMacos = "com.squareup.sqldelight:native-driver-macosx64:${Versions.Kotlin.sqlDelight}"
+    const val sqliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.Kotlin.sqlDelight}"
+    const val jsDriver = "com.squareup.sqldelight:sqljs-driver:${Versions.Kotlin.sqlDelight}"
 }
 
 object Android {

@@ -2,6 +2,7 @@ object Versions {
     const val gradleBuildTool = "7.0.4"
     const val shadow = "7.1.2"
     const val ktLint = "9.4.1"
+    const val composeDesktopWeb = "1.0.1"
 
     object Kotlin {
         const val kotlinVersion = "1.6.10"
@@ -17,6 +18,7 @@ object Versions {
         const val kodein = "7.10.0"
         const val koin = "3.1.5"
         const val decompose = "0.5.0"
+        const val mviKotlin = "3.0.0-alpha03"
     }
 
     object Backend {

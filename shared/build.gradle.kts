@@ -18,14 +18,6 @@ android {
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
     }
-//    configurations {
-//        create("androidTestApi")
-//        create("androidTestDebugApi")
-//        create("androidTestReleaseApi")
-//        create("testApi")
-//        create("testDebugApi")
-//        create("testReleaseApi")
-//    }
     compileOptions {
         sourceCompatibility = javaVersionName
         targetCompatibility = javaVersionName
@@ -33,61 +25,63 @@ android {
 }
 
 kotlin {
+    jvm()
     android()
-    ios {
-        binaries {
-            framework {
-                baseName = "shared"
-            }
-        }
-    }
+//    ios {
+//        binaries {
+//            framework {
+//                baseName = "shared"
+//            }
+//        }
+//    }
 // Block from https://github.com/cashapp/sqldelight/issues/2044#issuecomment-721299517.
 // See also: https://stackoverflow.com/a/62916853
-    val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
-    if (onPhone) {
-        iosArm64("ios")
-    } else {
-        iosX64("ios")
-    }
+//    val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
+//    if (onPhone) {
+//        iosArm64("ios")
+//    } else {
+//        iosX64("ios")
+//    }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(SqlDelight.runtime)
-                with(Kotlin) {
-                    api(coroutinesCore) { isForce = true }
-                    api(apollo)
-                }
+        sourceSets["commonMain"].dependencies {
+            implementation(SqlDelight.runtime)
+            api(Koin.core)
+            with(Kotlin) {
+                api(coroutinesCore) { isForce = true }
+                api(apollo)
+                api(kermit)
+                api(decompose)
+                api(decomposeComposeJetbrains)
+                api(mviKotlin)
             }
         }
-//        val commonTest by getting {
-//            dependencies {
-//                implementation(kotlin("test-common"))
-//                implementation(kotlin("test-annotations-common"))
-//            }
+//        sourceSets["commonTest"].dependencies {
+//            implementation(kotlin("test-common"))
+//            implementation(kotlin("test-annotations-common"))
 //        }
-        val androidMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-                implementation(SqlDelight.androidDriver)
-                api(Koin.android)
-                api(Koin.compose)
-            }
+        sourceSets["androidMain"].dependencies {
+            implementation(SqlDelight.androidDriver)
+            api(Koin.android)
+            api(Koin.compose)
         }
-//        val androidTest by getting {
-//            dependencies {
-//                implementation(project(Modules.SHARED))
-//                implementation(kotlin("test-junit"))
-//                implementation(AndroidTestDependencies.junit4)
-//            }
+//        sourceSets["androidTest"].dependencies {
+//            implementation(kotlin("test-junit"))
+//            implementation(AndroidTestDependencies.junit4)
 //        }
-        val iosMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-                implementation(SqlDelight.nativeDriver)
-            }
+//        sourceSets["iosMain"].dependencies {
+//            implementation(SqlDelight.nativeDriver)
+//        }
+//        sourceSets["iosTest"].dependencies {
+//        }
+        sourceSets["jvmMain"].dependencies {
+            implementation(SqlDelight.sqliteDriver)
+            api(Koin.core)
+
         }
-//        val iosTest by getting
+//        sourceSets["macOSMain"].dependencies {
+//            implementation(SqlDelight.nativeDriverMacos)
+//        }
     }
 }
 
