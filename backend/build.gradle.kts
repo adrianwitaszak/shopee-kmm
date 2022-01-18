@@ -4,8 +4,8 @@ plugins {
     id(Plugins.SHADOW)
 }
 
-//group = "com.adwi.ktor"
-//version = "0.0.1"
+group = "com.adwi.ktor"
+version = "0.0.1"
 
 //kotlin.sourceSets["main"].kotlin.srcDirs("src")
 //sourceSets["main"].resources.srcDirs("resources")
@@ -14,15 +14,15 @@ application {
     mainClassName = "com.adwi.ktor.ServerKt"
 }
 
-//tasks.withType<Jar> {
-//    manifest {
-//        attributes(
-//            mapOf(
-//                "Main-Class" to application.mainClassName
-//            )
-//        )
-//    }
-//}
+tasks.withType<Jar> {
+    manifest {
+        attributes(
+            mapOf(
+                "Main-Class" to application.mainClassName
+            )
+        )
+    }
+}
 
 //tasks.create("stage") {
 //    dependsOn("installDist")
