@@ -5,7 +5,6 @@ object Build {
     const val serialization =
         "org.jetbrains.kotlin:kotlin-serialization:${Versions.Kotlin.kotlinVersion}"
     const val shadow = "gradle.plugin.com.github.johnrengelman:shadow:${Versions.shadow}"
-    const val ktLint = "org.jlleitschuh.gradle:ktlint-gradle:${Versions.ktLint}"
 }
 
 object Kotlin {

@@ -11,7 +11,6 @@ object Plugins {
     const val KOTLIN_PARCELIZE = "kotlin-parcelize"
     const val APOLLO = "com.apollographql.apollo3"
     const val SHADOW = "com.github.johnrengelman.shadow"
-    const val KTLINT = "org.jlleitschuh.gradle.ktlint"
 
     const val SERIALIZATION = "plugin.serialization"
     const val SQL_DELIGHT = "com.squareup.sqldelight"

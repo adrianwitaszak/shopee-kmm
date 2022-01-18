@@ -11,7 +11,6 @@ buildscript {
         classpath(Build.sqlDelight)
         classpath(Build.serialization)
         classpath(Build.shadow)
-        classpath(Build.ktLint)
     }
 }
 

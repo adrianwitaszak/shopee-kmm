@@ -18,14 +18,14 @@ android {
         minSdk = AndroidConfig.minSdk
         targetSdk = AndroidConfig.targetSdk
     }
-    configurations {
-        create("androidTestApi")
-        create("androidTestDebugApi")
-        create("androidTestReleaseApi")
-        create("testApi")
-        create("testDebugApi")
-        create("testReleaseApi")
-    }
+//    configurations {
+//        create("androidTestApi")
+//        create("androidTestDebugApi")
+//        create("androidTestReleaseApi")
+//        create("testApi")
+//        create("testDebugApi")
+//        create("testReleaseApi")
+//    }
     compileOptions {
         sourceCompatibility = javaVersionName
         targetCompatibility = javaVersionName
@@ -60,12 +60,12 @@ kotlin {
                 }
             }
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test-common"))
-                implementation(kotlin("test-annotations-common"))
-            }
-        }
+//        val commonTest by getting {
+//            dependencies {
+//                implementation(kotlin("test-common"))
+//                implementation(kotlin("test-annotations-common"))
+//            }
+//        }
         val androidMain by getting {
             dependsOn(commonMain)
             dependencies {
@@ -74,20 +74,20 @@ kotlin {
                 api(Koin.compose)
             }
         }
-        val androidTest by getting {
-            dependencies {
-                implementation(project(Modules.SHARED))
-                implementation(kotlin("test-junit"))
-                implementation(AndroidTestDependencies.junit4)
-            }
-        }
+//        val androidTest by getting {
+//            dependencies {
+//                implementation(project(Modules.SHARED))
+//                implementation(kotlin("test-junit"))
+//                implementation(AndroidTestDependencies.junit4)
+//            }
+//        }
         val iosMain by getting {
             dependsOn(commonMain)
             dependencies {
                 implementation(SqlDelight.nativeDriver)
             }
         }
-        val iosTest by getting
+//        val iosTest by getting
     }
 }
 
