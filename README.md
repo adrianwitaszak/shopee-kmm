@@ -1,15 +1,15 @@
 # \[ 🚧 Work in progress 👷‍♀️⛏👷🔧️👷🔧 🚧 \]
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=shoppe)
-![](https://img.shields.io/github/stars/shoppe/shopee-kmm)
-![](https://img.shields.io/github/forks/shoppe/shopee-kmm)
-![](https://img.shields.io/github/watchers/shoppe/shopee-kmm)
-![](https://img.shields.io/github/commit-activity/m/shoppe/shopee-kmm)
-![](https://img.shields.io/github/last-commit/shoppe/shopee-kmm)
-![](https://img.shields.io/github/repo-size/shoppe/shopee-kmm)
-![](https://img.shields.io/tokei/lines/github/shoppe/shopee-kmm)
-![](https://img.shields.io/github/languages/count/shoppe/shopee-kmm)
-![](https://img.shields.io/github/languages/top/shoppe/shopee-kmm)
+![](https://img.shields.io/github/stars/adrianwitaszak/shopee-kmm)
+![](https://img.shields.io/github/forks/adrianwitaszak/shopee-kmm)
+![](https://img.shields.io/github/watchers/adrianwitaszak/shopee-kmm)
+![](https://img.shields.io/github/commit-activity/m/adrianwitaszak/shopee-kmm)
+![](https://img.shields.io/github/last-commit/adrianwitaszak/shopee-kmm)
+![](https://img.shields.io/github/repo-size/adrianwitaszak/shopee-kmm)
+![](https://img.shields.io/tokei/lines/github/adrianwitaszak/shopee-kmm)
+![](https://img.shields.io/github/languages/count/adrianwitaszak/shopee-kmm)
+![](https://img.shields.io/github/languages/top/adrianwitaszak/shopee-kmm)
 
 # Shoppe Kotlin Multiplatform App
 
