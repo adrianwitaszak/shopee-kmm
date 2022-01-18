@@ -1,15 +1,15 @@
 # \[ 🚧 Work in progress 👷‍♀️⛏👷🔧️👷🔧 🚧 \]
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=shoppe)
-![](https://img.shields.io/github/stars/shoppe/pexwallpapers)
-![](https://img.shields.io/github/forks/shoppe/pexwallpapers)
-![](https://img.shields.io/github/watchers/shoppe/pexwallpapers)
-![](https://img.shields.io/github/commit-activity/m/shoppe/pexwallpapers)
-![](https://img.shields.io/github/last-commit/shoppe/pexwallpapers)
-![](https://img.shields.io/github/repo-size/shoppe/pexwallpapers)
-![](https://img.shields.io/tokei/lines/github/shoppe/pexwallpapers)
-![](https://img.shields.io/github/languages/count/shoppe/pexwallpapers)
-![](https://img.shields.io/github/languages/top/shoppe/pexwallpapers)
+![](https://img.shields.io/github/stars/shoppe/shopee-kmm)
+![](https://img.shields.io/github/forks/shoppe/shopee-kmm)
+![](https://img.shields.io/github/watchers/shoppe/shopee-kmm)
+![](https://img.shields.io/github/commit-activity/m/shoppe/shopee-kmm)
+![](https://img.shields.io/github/last-commit/shoppe/shopee-kmm)
+![](https://img.shields.io/github/repo-size/shoppe/shopee-kmm)
+![](https://img.shields.io/tokei/lines/github/shoppe/shopee-kmm)
+![](https://img.shields.io/github/languages/count/shoppe/shopee-kmm)
+![](https://img.shields.io/github/languages/top/shoppe/shopee-kmm)
 
 # Shoppe Kotlin Multiplatform App
 
