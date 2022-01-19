@@ -11,7 +11,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import com.adwi.shoppe.di.initKoin
 import com.adwi.shoppe.ui.navigation.ShoppeNavHost
+import com.adwi.shoppe.ui.theme.ShoppeTheme
 import com.adwi.shoppe.util.Constants.APP_NAME
 import com.apollographql.apollo3.annotations.ApolloExperimental
 import com.arkivanov.decompose.ExperimentalDecomposeApi
@@ -28,9 +30,7 @@ val DarkerBlue = Color(0xFF4c43cc)
 @ExperimentalCoroutinesApi
 @ApolloExperimental
 fun main() {
-//    overrideSchedulers(main = Dispatchers.Main::asScheduler)
-
-//    val koin = initKoin().koin
+    val koin = initKoin().koin
 //    val lifecycle = LifecycleRegistry()
 //    val root = RootComponent(
 //        componentContext = DefaultComponentContext(lifecycle = lifecycle),
@@ -56,8 +56,9 @@ fun main() {
             state = windowState,
             title = APP_NAME
         ) {
-            Surface(modifier = Modifier.fillMaxSize()) {
-                MaterialTheme {
+            ShoppeTheme(darkTheme = false) {
+
+                Surface(modifier = Modifier.fillMaxSize()) {
                     CompositionLocalProvider(
                         LocalBackPressedDispatcher provides BackPressedDispatcher(),
                         LocalScrollbarStyle provides ScrollbarStyle(

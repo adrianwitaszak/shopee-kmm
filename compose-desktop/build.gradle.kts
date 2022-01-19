@@ -25,6 +25,12 @@ dependencies {
         implementation(runtime)
         implementation(foundation)
         implementation(material)
+        implementation(animation)
+        implementation(animationGraphics)
+        implementation(ui)
+        implementation(uiTooling)
+        implementation(preview)
+        implementation(materialIconsExtended)
     }
 }
 
