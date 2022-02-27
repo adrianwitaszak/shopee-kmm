@@ -21,6 +21,9 @@ fun AnimatedShadeBackground(
     debug: Boolean = false,
     background: Color = MaterialTheme.colorScheme.background,
 ) {
+
+    MorphUi
+
     val firstConstraintSet = """{
             shadeViolet: {
                 top: ['parent', 'bottom', -200],

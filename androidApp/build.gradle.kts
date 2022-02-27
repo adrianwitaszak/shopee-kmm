@@ -52,6 +52,7 @@ dependencies {
     // Needed to run Compose Motion Layout Inspector
     implementation("androidx.constraintlayout:constraintlayout-core:1.0.3")
 
+
     with(Android) {
         implementation(coil)
         implementation(paging)
