@@ -50,7 +50,7 @@ dependencies {
     implementation(project(Modules.SHARED))
 
     // Needed to run Compose Motion Layout Inspector
-    implementation("androidx.constraintlayout:constraintlayout-core:1.0.3")
+    implementation("androidx.constraintlayout:constraintlayout-core:1.0.4")
 
 
     with(Android) {
